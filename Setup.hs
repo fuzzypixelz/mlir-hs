@@ -86,7 +86,7 @@ buildTblgen confFlags = do
   cc <- getCC confFlags
   ensureDirectory $ cwd </> ".bin"
   cc $ sources ++ cxxFlags ++ ldFlags ++
-        [ "-lMLIR", "-lLLVM", "-lMLIRTableGen", "-lLLVMTableGen"
+        [ "-lMLIR", "-lMLIRTableGen", "-lLLVMTableGen"
         , "-o", cwd </> ".bin/mlir-hs-tblgen"]
   let tblgenProgram = ConfiguredProgram
         { programId           = "mlir-hs-tblgen"
