@@ -139,9 +139,10 @@ data Attribute =
   | TypeAttr       Type
   | AffineMapAttr  Affine.Map
   | UnitAttr
+  | FlatSymbolRefAttr  BS.ByteString
   | DenseElementsAttr Type DenseElements
   deriving Eq
-  -- TODO(apaszke): (Flat) SymbolRef, IntegerSet, Opaque
+  -- TODO(apaszke): IntegerSet, Opaque
 
 data DenseElements
   = forall i. (Show i, Ix i) => DenseUInt8  (IStorableArray i Word8 )
@@ -457,6 +458,11 @@ instance FromAST Attribute Native.Attribute where
       nativeMap <- fromAST ctx env afMap
       [C.exp| MlirAttribute { mlirAffineMapAttrGet($(MlirAffineMap nativeMap)) } |]
     UnitAttr -> [C.exp| MlirAttribute { mlirUnitAttrGet($(MlirContext ctx)) } |]
+    FlatSymbolRefAttr value -> do
+      Native.withStringRef value \(Native.StringRef ptr len) ->
+        [C.exp| MlirAttribute {
+          mlirFlatSymbolRefAttrGet($(MlirContext ctx), (MlirStringRef){$(char* ptr), $(size_t len)})
+        } |]
     DenseElementsAttr ty storage -> do
       nativeType <- fromAST ctx env ty
       case storage of
