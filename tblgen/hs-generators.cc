@@ -226,6 +226,7 @@ const attr_pattern_map& getAttrPatternTemplates() {
                            "(AST.IStorableArray {0} Int64)", {"Ix {0}", "Show {0}"}, {"PatternUtil.DummyIx"}}},
       {"IndexAttr", {"IntegerAttr IndexType {0}", "Int", {}, {}}},
       {"StrAttr", {"StringAttr {0}", "BS.ByteString", {}, {}}},
+      {"FlatSymbolRefAttr", {"FlatSymbolRefAttr {0}", "BS.ByteString", {}, {}}},
   };
   return *kAttrHandlers;
 }
