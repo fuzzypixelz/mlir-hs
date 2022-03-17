@@ -1012,6 +1012,41 @@ pattern Yield :: () => () => Location -> [operand] -> AbstractOperation operand
 -- | A builder for <tt>shape.yield</tt>.
 yield :: () => MonadBlockBuilder m => [Value] -> m EndOfBlock
 
+module MLIR.AST.Dialect.SCF
+
+-- | A builder for <tt>scf.condition</tt>.
+condition :: () => MonadBlockBuilder m => Value -> [Value] -> m EndOfBlock
+
+-- | A builder for <tt>scf.execute_region</tt>.
+execute_region :: () => MonadBlockBuilder m => [Type] -> RegionBuilderT m () -> m Value
+
+-- | A builder for <tt>scf.for</tt>.
+for :: () => MonadBlockBuilder m => [Type] -> Value -> Value -> Value -> [Value] -> RegionBuilderT m () -> m Value
+
+-- | A builder for <tt>scf.if</tt>.
+if_ :: () => MonadBlockBuilder m => [Type] -> Value -> RegionBuilderT m () -> RegionBuilderT m () -> m Value
+
+-- | A builder for <tt>scf.parallel</tt>.
+parallel :: () => MonadBlockBuilder m => [Type] -> [Value] -> [Value] -> [Value] -> [Value] -> RegionBuilderT m () -> m Value
+
+-- | A builder for <tt>scf.reduce</tt>.
+reduce :: () => MonadBlockBuilder m => Value -> RegionBuilderT m () -> m ()
+
+-- | A pattern for <tt>scf.reduce.return</tt>.
+pattern ReduceReturn :: () => () => Location -> operand -> AbstractOperation operand
+
+-- | A builder for <tt>scf.reduce.return</tt>.
+reduce_return :: () => MonadBlockBuilder m => Value -> m EndOfBlock
+
+-- | A builder for <tt>scf.while</tt>.
+while :: () => MonadBlockBuilder m => [Type] -> [Value] -> RegionBuilderT m () -> RegionBuilderT m () -> m Value
+
+-- | A pattern for <tt>scf.yield</tt>.
+pattern Yield :: () => () => Location -> [operand] -> AbstractOperation operand
+
+-- | A builder for <tt>scf.yield</tt>.
+yield :: () => MonadBlockBuilder m => [Value] -> m EndOfBlock
+
 module MLIR.AST.Dialect.Linalg
 
 -- | A pattern for <tt>linalg.index</tt>.
@@ -2133,17 +2168,17 @@ assert :: () => MonadBlockBuilder m => Value -> ByteString -> m ()
 
 module MLIR.Native.Pass
 createPassManager :: Context -> IO PassManager
-inline_c_ffi_6989586621679489735 :: Context -> IO PassManager
+inline_c_ffi_6989586621679489757 :: Context -> IO PassManager
 destroyPassManager :: PassManager -> IO ()
-inline_c_ffi_6989586621679489744 :: PassManager -> IO ()
+inline_c_ffi_6989586621679489766 :: PassManager -> IO ()
 withPassManager :: Context -> (PassManager -> IO a) -> IO a
 runPasses :: PassManager -> Module -> IO LogicalResult
-inline_c_ffi_6989586621679489757 :: PassManager -> Module -> IO LogicalResult
+inline_c_ffi_6989586621679489779 :: PassManager -> Module -> IO LogicalResult
 addConvertMemRefToLLVMPass :: PassManager -> IO ()
-inline_c_ffi_6989586621679489766 :: PassManager -> IO ()
+inline_c_ffi_6989586621679489788 :: PassManager -> IO ()
 addConvertFuncToLLVMPass :: PassManager -> IO ()
-inline_c_ffi_6989586621679489775 :: PassManager -> IO ()
+inline_c_ffi_6989586621679489797 :: PassManager -> IO ()
 addConvertVectorToLLVMPass :: PassManager -> IO ()
-inline_c_ffi_6989586621679489784 :: PassManager -> IO ()
+inline_c_ffi_6989586621679489806 :: PassManager -> IO ()
 addConvertReconcileUnrealizedCastsPass :: PassManager -> IO ()
-inline_c_ffi_6989586621679489793 :: PassManager -> IO ()
+inline_c_ffi_6989586621679489815 :: PassManager -> IO ()
