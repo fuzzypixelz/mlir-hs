@@ -1,0 +1,1025 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><link rel="stylesheet" type="text/css" href="style.css" /><script type="text/javascript" src="highlight.js"></script></head><body><pre><span class="hs-pragma">{-# OPTIONS_GHC -Wno-unused-imports #-}</span><span>
+</span><span id="line-2"></span><span class="hs-pragma">{-# OPTIONS_HADDOCK hide, prune, not-home #-}</span><span>
+</span><span id="line-3"></span><span>
+</span><span id="line-4"></span><span class="hs-keyword">module</span><span> </span><span class="hs-identifier">MLIR.AST.Dialect.Generated.SCF</span><span> </span><span class="hs-keyword">where</span><span>
+</span><span id="line-5"></span><span>
+</span><span id="line-6"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Prelude</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">Int</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier">Double</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier">Maybe</span></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier">Bool</span></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-operator">(++)</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-operator">(&lt;$&gt;)</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-operator">($)</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-operator">(&lt;&gt;)</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="hs-identifier">Show</span></span><span class="hs-special">)</span><span>
+</span><span id="line-7"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Prelude</span></span><span>
+</span><span id="line-8"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Int</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">Int64</span></span><span class="hs-special">)</span><span>
+</span><span id="line-9"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Maybe</span></span><span>
+</span><span id="line-10"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><span class="hs-identifier">Data.Array</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="hs-identifier">Ix</span></span><span class="hs-special">)</span><span>
+</span><span id="line-11"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Array.IArray</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">IArray</span></span><span>
+</span><span id="line-12"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.ByteString</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">BS</span></span><span>
+</span><span id="line-13"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Data.Map.Strict</span></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">M</span></span><span>
+</span><span id="line-14"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><span class="hs-identifier">Control.Monad</span></span><span>
+</span><span id="line-15"></span><span>
+</span><span id="line-16"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="MLIR.AST.html"><span class="hs-identifier">MLIR.AST</span></a></span><span> </span><span class="hs-special">(</span><span> </span><span class="annot"><a href="MLIR.AST.html#Attribute"><span class="hs-identifier">Attribute</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#Type"><span class="hs-identifier">Type</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#AbstractOperation"><span class="hs-identifier">AbstractOperation</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#ResultTypes"><span class="hs-identifier">ResultTypes</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><span id="line-17"></span><span>                </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#Location"><span class="hs-identifier">Location</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#Signedness"><span class="hs-identifier">Signedness</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#DenseElements"><span class="hs-identifier">DenseElements</span></a></span><span class="hs-special">(</span><span class="hs-glyph">..</span><span class="hs-special">)</span><span>
+</span><span id="line-18"></span><span>                </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#NamedAttributes"><span class="hs-identifier">NamedAttributes</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#Name"><span class="hs-identifier">Name</span></a></span><span>
+</span><span id="line-19"></span><span>                </span><span class="hs-special">,</span><span> </span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier">NoAttrs</span></a></span><span> </span><span class="hs-special">)</span><span>
+</span><span id="line-20"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="MLIR.AST.html"><span class="hs-identifier">MLIR.AST</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">AST</span></span><span>
+</span><span id="line-21"></span><span class="hs-keyword">import</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html"><span class="hs-identifier">MLIR.AST.Builder</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier">Value</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#EndOfBlock"><span class="hs-identifier">EndOfBlock</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#MonadBlockBuilder"><span class="hs-identifier">MonadBlockBuilder</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#RegionBuilderT"><span class="hs-identifier">RegionBuilderT</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-22"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html"><span class="hs-identifier">MLIR.AST.Builder</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">AST</span></span><span>
+</span><span id="line-23"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="MLIR.AST.IStorableArray.html"><span class="hs-identifier">MLIR.AST.IStorableArray</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">AST</span></span><span>
+</span><span id="line-24"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="MLIR.AST.PatternUtil.html"><span class="hs-identifier">MLIR.AST.PatternUtil</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">PatternUtil</span></span><span>
+</span><span id="line-25"></span><span class="hs-keyword">import</span><span> </span><span class="hs-keyword">qualified</span><span> </span><span class="annot"><a href="MLIR.AST.Dialect.Affine.html"><span class="hs-identifier">MLIR.AST.Dialect.Affine</span></a></span><span> </span><span class="hs-keyword">as</span><span> </span><span class="annot"><span class="hs-identifier">Affine</span></span><span>
+</span><span id="line-26"></span><span>
+</span><span id="line-27"></span><span class="hs-comment">-- * condition</span><span>
+</span><span id="line-28"></span><span class="hs-comment">-- $condition</span><span>
+</span><span id="line-29"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-30"></span><span class="hs-comment">-- This operation accepts the continuation (i.e., inverse of exit) condition</span><span>
+</span><span id="line-31"></span><span class="hs-comment">-- of the @scf.while@ construct. If its first argument is true, the \&quot;after\&quot;</span><span>
+</span><span id="line-32"></span><span class="hs-comment">-- region of @scf.while@ is executed, with the remaining arguments forwarded</span><span>
+</span><span id="line-33"></span><span class="hs-comment">-- to the entry block of the region. Otherwise, the loop terminates.</span><span>
+</span><span id="line-34"></span><span class="hs-comment">--   </span><span>
+</span><span id="line-35"></span><span>
+</span><span id="line-36"></span><span class="hs-comment">-- | A builder for @scf.condition@.</span><span>
+</span><span id="line-37"></span><span id="local-6989586621679505244"><span class="annot"><a href="MLIR.AST.Dialect.Generated.SCF.html#condition"><span class="hs-identifier hs-type">condition</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#MonadBlockBuilder"><span class="hs-identifier hs-type">MonadBlockBuilder</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505244"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679505244"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#EndOfBlock"><span class="hs-identifier hs-type">EndOfBlock</span></a></span></span><span>
+</span><span id="line-38"></span><span id="condition"><span class="annot"><span class="annottext">condition :: Value -&gt; [Value] -&gt; m EndOfBlock
+</span><a href="MLIR.AST.Dialect.Generated.SCF.html#condition"><span class="hs-identifier hs-var hs-var">condition</span></a></span></span><span>  </span><span id="local-6989586621679505242"><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505242"><span class="hs-identifier hs-var">condition</span></a></span></span><span> </span><span id="local-6989586621679505241"><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505241"><span class="hs-identifier hs-var">args</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-39"></span><span>  </span><span class="annot"><span class="annottext">m [Value] -&gt; m ()
+forall (f :: * -&gt; *) a. Functor f =&gt; f a -&gt; f ()
+</span><span class="hs-identifier hs-var">Control.Monad.void</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation -&gt; m [Value]
+forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
+</span><a href="MLIR.AST.Builder.html#emitOp"><span class="hs-identifier hs-var">AST.emitOp</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation :: forall operand.
+Name
+-&gt; Location
+-&gt; ResultTypes
+-&gt; [operand]
+-&gt; [Region]
+-&gt; [Name]
+-&gt; Map Name Attribute
+-&gt; AbstractOperation operand
+</span><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span>
+</span><span id="line-40"></span><span>          </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opName :: Name
+</span><a href="MLIR.AST.html#opName"><span class="hs-identifier hs-var">opName</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Name
+</span><span class="hs-string">&quot;scf.condition&quot;</span></span><span>
+</span><span id="line-41"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opLocation :: Location
+</span><a href="MLIR.AST.html#opLocation"><span class="hs-identifier hs-var">opLocation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Location
+</span><a href="MLIR.AST.html#UnknownLocation"><span class="hs-identifier hs-var">UnknownLocation</span></a></span><span>
+</span><span id="line-42"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opResultTypes :: ResultTypes
+</span><a href="MLIR.AST.html#opResultTypes"><span class="hs-identifier hs-var">opResultTypes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Type] -&gt; ResultTypes
+</span><a href="MLIR.AST.html#Explicit"><span class="hs-identifier hs-var">Explicit</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-43"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [Name]
+</span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">Value -&gt; Name
+</span><a href="MLIR.AST.Builder.html#operand"><span class="hs-identifier hs-var">AST.operand</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505242"><span class="hs-identifier hs-var">condition</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; [Name] -&gt; [Name]
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505241"><span class="hs-identifier hs-var">args</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-44"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-45"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opSuccessors :: [Name]
+</span><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-46"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opAttributes :: Map Name Attribute
+</span><a href="MLIR.AST.html#opAttributes"><span class="hs-identifier hs-var">opAttributes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Map Name Attribute
+</span><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier hs-var">NoAttrs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-47"></span><span>          </span><span class="hs-special">}</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-48"></span><span>  </span><span class="annot"><span class="annottext">m EndOfBlock
+forall (m :: * -&gt; *). Monad m =&gt; m EndOfBlock
+</span><a href="MLIR.AST.Builder.html#terminateBlock"><span class="hs-identifier hs-var">AST.terminateBlock</span></a></span><span>
+</span><span id="line-49"></span><span>
+</span><span id="line-50"></span><span class="hs-comment">-- * execute_region</span><span>
+</span><span id="line-51"></span><span class="hs-comment">-- $execute_region</span><span>
+</span><span id="line-52"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-53"></span><span class="hs-comment">-- The @execute_region@ operation is used to allow multiple blocks within SCF</span><span>
+</span><span id="line-54"></span><span class="hs-comment">-- and other operations which can hold only one block.  The @execute_region@</span><span>
+</span><span id="line-55"></span><span class="hs-comment">-- operation executes the region held exactly once and cannot have any operands.</span><span>
+</span><span id="line-56"></span><span class="hs-comment">-- As such, its region has no arguments. All SSA values that dominate the op can</span><span>
+</span><span id="line-57"></span><span class="hs-comment">-- be accessed inside the op. The op\'s region can have multiple blocks and the</span><span>
+</span><span id="line-58"></span><span class="hs-comment">-- blocks can have multiple distinct terminators. Values returned from this op\'s</span><span>
+</span><span id="line-59"></span><span class="hs-comment">-- region define the op\'s results.</span><span>
+</span><span id="line-60"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-61"></span><span class="hs-comment">-- Example:</span><span>
+</span><span id="line-62"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-63"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-64"></span><span class="hs-comment">-- scf.for %i = 0 to 128 step %c1 {</span><span>
+</span><span id="line-65"></span><span class="hs-comment">--   %y = scf.execute_region -&gt; i32 {</span><span>
+</span><span id="line-66"></span><span class="hs-comment">--     %x = load %A[%i] : memref\&lt;128xi32&gt;</span><span>
+</span><span id="line-67"></span><span class="hs-comment">--     scf.yield %x : i32</span><span>
+</span><span id="line-68"></span><span class="hs-comment">--   }</span><span>
+</span><span id="line-69"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-70"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-71"></span><span class="hs-comment">-- affine.for %i = 0 to 100 {</span><span>
+</span><span id="line-72"></span><span class="hs-comment">--   \&quot;foo\&quot;() : () -&gt; ()</span><span>
+</span><span id="line-73"></span><span class="hs-comment">--   %v = scf.execute_region -&gt; i64 {</span><span>
+</span><span id="line-74"></span><span class="hs-comment">--     cf.cond_br %cond, ^bb1, ^bb2</span><span>
+</span><span id="line-75"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-76"></span><span class="hs-comment">--   ^bb1:</span><span>
+</span><span id="line-77"></span><span class="hs-comment">--     %c1 = arith.constant 1 : i64</span><span>
+</span><span id="line-78"></span><span class="hs-comment">--     cf.br ^bb3(%c1 : i64)</span><span>
+</span><span id="line-79"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-80"></span><span class="hs-comment">--   ^bb2:</span><span>
+</span><span id="line-81"></span><span class="hs-comment">--     %c2 = arith.constant 2 : i64</span><span>
+</span><span id="line-82"></span><span class="hs-comment">--     cf.br ^bb3(%c2 : i64)</span><span>
+</span><span id="line-83"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-84"></span><span class="hs-comment">--   ^bb3(%x : i64):</span><span>
+</span><span id="line-85"></span><span class="hs-comment">--     scf.yield %x : i64</span><span>
+</span><span id="line-86"></span><span class="hs-comment">--   }</span><span>
+</span><span id="line-87"></span><span class="hs-comment">--   \&quot;bar\&quot;(%v) : (i64) -&gt; ()</span><span>
+</span><span id="line-88"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-89"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-90"></span><span class="hs-comment">--   </span><span>
+</span><span id="line-91"></span><span>
+</span><span id="line-92"></span><span class="hs-comment">-- | A builder for @scf.execute_region@.</span><span>
+</span><span id="line-93"></span><span id="local-6989586621679505225"><span class="annot"><a href="MLIR.AST.Dialect.Generated.SCF.html#execute_region"><span class="hs-identifier hs-type">execute_region</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#MonadBlockBuilder"><span class="hs-identifier hs-type">MonadBlockBuilder</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505225"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.html#Type"><span class="hs-identifier hs-type">Type</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#RegionBuilderT"><span class="hs-identifier hs-type">RegionBuilderT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505225"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679505225"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span></span><span>
+</span><span id="line-94"></span><span id="execute_region"><span class="annot"><span class="annottext">execute_region :: [Type] -&gt; RegionBuilderT m () -&gt; m Value
+</span><a href="MLIR.AST.Dialect.Generated.SCF.html#execute_region"><span class="hs-identifier hs-var hs-var">execute_region</span></a></span></span><span> </span><span id="local-6989586621679505223"><span class="annot"><span class="annottext">[Type]
+</span><a href="#local-6989586621679505223"><span class="hs-identifier hs-var">ty0</span></a></span></span><span>   </span><span id="local-6989586621679505222"><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505222"><span class="hs-identifier hs-var">regionBuilder</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-95"></span><span>  </span><span id="local-6989586621679505221"><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505221"><span class="hs-identifier hs-var">region</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m () -&gt; m Region
+forall (m :: * -&gt; *). Monad m =&gt; RegionBuilderT m () -&gt; m Region
+</span><a href="MLIR.AST.Builder.html#buildRegion"><span class="hs-identifier hs-var">AST.buildRegion</span></a></span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505222"><span class="hs-identifier hs-var">regionBuilder</span></a></span><span>
+</span><span id="line-96"></span><span>  </span><span class="annot"><span class="annottext">([Value] -&gt; Value) -&gt; m [Value] -&gt; m Value
+forall (m :: * -&gt; *) a1 r. Monad m =&gt; (a1 -&gt; r) -&gt; m a1 -&gt; m r
+</span><span class="hs-identifier hs-var">Control.Monad.liftM</span></span><span> </span><span class="annot"><span class="annottext">[Value] -&gt; Value
+forall a. [a] -&gt; a
+</span><span class="hs-identifier hs-var">Prelude.head</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation -&gt; m [Value]
+forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
+</span><a href="MLIR.AST.Builder.html#emitOp"><span class="hs-identifier hs-var">AST.emitOp</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation :: forall operand.
+Name
+-&gt; Location
+-&gt; ResultTypes
+-&gt; [operand]
+-&gt; [Region]
+-&gt; [Name]
+-&gt; Map Name Attribute
+-&gt; AbstractOperation operand
+</span><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span>
+</span><span id="line-97"></span><span>          </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opName :: Name
+</span><a href="MLIR.AST.html#opName"><span class="hs-identifier hs-var">opName</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Name
+</span><span class="hs-string">&quot;scf.execute_region&quot;</span></span><span>
+</span><span id="line-98"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opLocation :: Location
+</span><a href="MLIR.AST.html#opLocation"><span class="hs-identifier hs-var">opLocation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Location
+</span><a href="MLIR.AST.html#UnknownLocation"><span class="hs-identifier hs-var">UnknownLocation</span></a></span><span>
+</span><span id="line-99"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opResultTypes :: ResultTypes
+</span><a href="MLIR.AST.html#opResultTypes"><span class="hs-identifier hs-var">opResultTypes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Type] -&gt; ResultTypes
+</span><a href="MLIR.AST.html#Explicit"><span class="hs-identifier hs-var">Explicit</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Type]
+</span><a href="#local-6989586621679505223"><span class="hs-identifier hs-var">ty0</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-100"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [Name]
+</span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-101"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505221"><span class="hs-identifier hs-var">region</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-102"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opSuccessors :: [Name]
+</span><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-103"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opAttributes :: Map Name Attribute
+</span><a href="MLIR.AST.html#opAttributes"><span class="hs-identifier hs-var">opAttributes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Map Name Attribute
+</span><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier hs-var">NoAttrs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-104"></span><span>          </span><span class="hs-special">}</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-105"></span><span>
+</span><span id="line-106"></span><span class="hs-comment">-- * for</span><span>
+</span><span id="line-107"></span><span class="hs-comment">-- $for</span><span>
+</span><span id="line-108"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-109"></span><span class="hs-comment">-- The \&quot;scf.for\&quot; operation represents a loop taking 3 SSA value as operands</span><span>
+</span><span id="line-110"></span><span class="hs-comment">-- that represent the lower bound, upper bound and step respectively. The</span><span>
+</span><span id="line-111"></span><span class="hs-comment">-- operation defines an SSA value for its induction variable. It has one</span><span>
+</span><span id="line-112"></span><span class="hs-comment">-- region capturing the loop body. The induction variable is represented as an</span><span>
+</span><span id="line-113"></span><span class="hs-comment">-- argument of this region. This SSA value always has type index, which is the</span><span>
+</span><span id="line-114"></span><span class="hs-comment">-- size of the machine word. The step is a value of type index, required to be</span><span>
+</span><span id="line-115"></span><span class="hs-comment">-- positive.</span><span>
+</span><span id="line-116"></span><span class="hs-comment">-- The lower and upper bounds specify a half-open range: the range includes</span><span>
+</span><span id="line-117"></span><span class="hs-comment">-- the lower bound but does not include the upper bound.</span><span>
+</span><span id="line-118"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-119"></span><span class="hs-comment">-- The body region must contain exactly one block that terminates with</span><span>
+</span><span id="line-120"></span><span class="hs-comment">-- \&quot;scf.yield\&quot;. Calling ForOp::build will create such a region and insert</span><span>
+</span><span id="line-121"></span><span class="hs-comment">-- the terminator implicitly if none is defined, so will the parsing even in</span><span>
+</span><span id="line-122"></span><span class="hs-comment">-- cases when it is absent from the custom format. For example:</span><span>
+</span><span id="line-123"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-124"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-125"></span><span class="hs-comment">-- scf.for %iv = %lb to %ub step %step {</span><span>
+</span><span id="line-126"></span><span class="hs-comment">--   ... // body</span><span>
+</span><span id="line-127"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-128"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-129"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-130"></span><span class="hs-comment">-- @scf.for@ can also operate on loop-carried variables and returns the final</span><span>
+</span><span id="line-131"></span><span class="hs-comment">-- values after loop termination. The initial values of the variables are</span><span>
+</span><span id="line-132"></span><span class="hs-comment">-- passed as additional SSA operands to the \&quot;scf.for\&quot; following the 3 loop</span><span>
+</span><span id="line-133"></span><span class="hs-comment">-- control SSA values mentioned above (lower bound, upper bound and step). The</span><span>
+</span><span id="line-134"></span><span class="hs-comment">-- operation region has an argument for the induction variable, followed by</span><span>
+</span><span id="line-135"></span><span class="hs-comment">-- one argument for each loop-carried variable, representing the value of the</span><span>
+</span><span id="line-136"></span><span class="hs-comment">-- variable at the current iteration.</span><span>
+</span><span id="line-137"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-138"></span><span class="hs-comment">-- The region must terminate with a \&quot;scf.yield\&quot; that passes the current</span><span>
+</span><span id="line-139"></span><span class="hs-comment">-- values of all loop-carried variables to the next iteration, or to the</span><span>
+</span><span id="line-140"></span><span class="hs-comment">-- \&quot;scf.for\&quot; result, if at the last iteration. The static type of a</span><span>
+</span><span id="line-141"></span><span class="hs-comment">-- loop-carried variable may not change with iterations; its runtime type is</span><span>
+</span><span id="line-142"></span><span class="hs-comment">-- allowed to change. Note, that when the loop-carried variables are present,</span><span>
+</span><span id="line-143"></span><span class="hs-comment">-- calling ForOp::build will not insert the terminator implicitly. The caller</span><span>
+</span><span id="line-144"></span><span class="hs-comment">-- must insert \&quot;scf.yield\&quot; in that case.</span><span>
+</span><span id="line-145"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-146"></span><span class="hs-comment">-- \&quot;scf.for\&quot; results hold the final values after the last iteration.</span><span>
+</span><span id="line-147"></span><span class="hs-comment">-- For example, to sum-reduce a memref:</span><span>
+</span><span id="line-148"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-149"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-150"></span><span class="hs-comment">-- func \@reduce(%buffer: memref\&lt;1024xf32&gt;, %lb: index,</span><span>
+</span><span id="line-151"></span><span class="hs-comment">--              %ub: index, %step: index) -&gt; (f32) {</span><span>
+</span><span id="line-152"></span><span class="hs-comment">--   // Initial sum set to 0.</span><span>
+</span><span id="line-153"></span><span class="hs-comment">--   %sum_0 = arith.constant 0.0 : f32</span><span>
+</span><span id="line-154"></span><span class="hs-comment">--   // iter_args binds initial values to the loop\'s region arguments.</span><span>
+</span><span id="line-155"></span><span class="hs-comment">--   %sum = scf.for %iv = %lb to %ub step %step</span><span>
+</span><span id="line-156"></span><span class="hs-comment">--       iter_args(%sum_iter = %sum_0) -&gt; (f32) {</span><span>
+</span><span id="line-157"></span><span class="hs-comment">--     %t = load %buffer[%iv] : memref\&lt;1024xf32&gt;</span><span>
+</span><span id="line-158"></span><span class="hs-comment">--     %sum_next = arith.addf %sum_iter, %t : f32</span><span>
+</span><span id="line-159"></span><span class="hs-comment">--     // Yield current iteration sum to next iteration %sum_iter or to %sum</span><span>
+</span><span id="line-160"></span><span class="hs-comment">--     // if final iteration.</span><span>
+</span><span id="line-161"></span><span class="hs-comment">--     scf.yield %sum_next : f32</span><span>
+</span><span id="line-162"></span><span class="hs-comment">--   }</span><span>
+</span><span id="line-163"></span><span class="hs-comment">--   return %sum : f32</span><span>
+</span><span id="line-164"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-165"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-166"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-167"></span><span class="hs-comment">-- If the \&quot;scf.for\&quot; defines any values, a yield must be explicitly present.</span><span>
+</span><span id="line-168"></span><span class="hs-comment">-- The number and types of the \&quot;scf.for\&quot; results must match the initial</span><span>
+</span><span id="line-169"></span><span class="hs-comment">-- values in the \&quot;iter_args\&quot; binding and the yield operands.</span><span>
+</span><span id="line-170"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-171"></span><span class="hs-comment">-- Another example with a nested \&quot;scf.if\&quot; (see \&quot;scf.if\&quot; for details) to</span><span>
+</span><span id="line-172"></span><span class="hs-comment">-- perform conditional reduction:</span><span>
+</span><span id="line-173"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-174"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-175"></span><span class="hs-comment">-- func \@conditional_reduce(%buffer: memref\&lt;1024xf32&gt;, %lb: index,</span><span>
+</span><span id="line-176"></span><span class="hs-comment">--                          %ub: index, %step: index) -&gt; (f32) {</span><span>
+</span><span id="line-177"></span><span class="hs-comment">--   %sum_0 = arith.constant 0.0 : f32</span><span>
+</span><span id="line-178"></span><span class="hs-comment">--   %c0 = arith.constant 0.0 : f32</span><span>
+</span><span id="line-179"></span><span class="hs-comment">--   %sum = scf.for %iv = %lb to %ub step %step</span><span>
+</span><span id="line-180"></span><span class="hs-comment">--       iter_args(%sum_iter = %sum_0) -&gt; (f32) {</span><span>
+</span><span id="line-181"></span><span class="hs-comment">--     %t = load %buffer[%iv] : memref\&lt;1024xf32&gt;</span><span>
+</span><span id="line-182"></span><span class="hs-comment">--     %cond = arith.cmpf \&quot;ugt\&quot;, %t, %c0 : f32</span><span>
+</span><span id="line-183"></span><span class="hs-comment">--     %sum_next = scf.if %cond -&gt; (f32) {</span><span>
+</span><span id="line-184"></span><span class="hs-comment">--       %new_sum = arith.addf %sum_iter, %t : f32</span><span>
+</span><span id="line-185"></span><span class="hs-comment">--       scf.yield %new_sum : f32</span><span>
+</span><span id="line-186"></span><span class="hs-comment">--     } else {</span><span>
+</span><span id="line-187"></span><span class="hs-comment">--       scf.yield %sum_iter : f32</span><span>
+</span><span id="line-188"></span><span class="hs-comment">--     }</span><span>
+</span><span id="line-189"></span><span class="hs-comment">--     scf.yield %sum_next : f32</span><span>
+</span><span id="line-190"></span><span class="hs-comment">--   }</span><span>
+</span><span id="line-191"></span><span class="hs-comment">--   return %sum : f32</span><span>
+</span><span id="line-192"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-193"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-194"></span><span class="hs-comment">--   </span><span>
+</span><span id="line-195"></span><span>
+</span><span id="line-196"></span><span class="hs-comment">-- | A builder for @scf.for@.</span><span>
+</span><span id="line-197"></span><span id="local-6989586621679505217"><span class="annot"><a href="MLIR.AST.Dialect.Generated.SCF.html#for"><span class="hs-identifier hs-type">for</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#MonadBlockBuilder"><span class="hs-identifier hs-type">MonadBlockBuilder</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505217"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.html#Type"><span class="hs-identifier hs-type">Type</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#RegionBuilderT"><span class="hs-identifier hs-type">RegionBuilderT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505217"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679505217"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span></span><span>
+</span><span id="line-198"></span><span id="for"><span class="annot"><span class="annottext">for :: [Type]
+-&gt; Value
+-&gt; Value
+-&gt; Value
+-&gt; [Value]
+-&gt; RegionBuilderT m ()
+-&gt; m Value
+</span><a href="MLIR.AST.Dialect.Generated.SCF.html#for"><span class="hs-identifier hs-var hs-var">for</span></a></span></span><span> </span><span id="local-6989586621679505215"><span class="annot"><span class="annottext">[Type]
+</span><a href="#local-6989586621679505215"><span class="hs-identifier hs-var">ty0</span></a></span></span><span> </span><span id="local-6989586621679505214"><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505214"><span class="hs-identifier hs-var">lowerBound</span></a></span></span><span> </span><span id="local-6989586621679505213"><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505213"><span class="hs-identifier hs-var">upperBound</span></a></span></span><span> </span><span id="local-6989586621679505212"><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505212"><span class="hs-identifier hs-var">step</span></a></span></span><span> </span><span id="local-6989586621679505211"><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505211"><span class="hs-identifier hs-var">initArgs</span></a></span></span><span>  </span><span id="local-6989586621679505210"><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505210"><span class="hs-identifier hs-var">regionBuilder</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-199"></span><span>  </span><span id="local-6989586621679505209"><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505209"><span class="hs-identifier hs-var">region</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m () -&gt; m Region
+forall (m :: * -&gt; *). Monad m =&gt; RegionBuilderT m () -&gt; m Region
+</span><a href="MLIR.AST.Builder.html#buildRegion"><span class="hs-identifier hs-var">AST.buildRegion</span></a></span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505210"><span class="hs-identifier hs-var">regionBuilder</span></a></span><span>
+</span><span id="line-200"></span><span>  </span><span class="annot"><span class="annottext">([Value] -&gt; Value) -&gt; m [Value] -&gt; m Value
+forall (m :: * -&gt; *) a1 r. Monad m =&gt; (a1 -&gt; r) -&gt; m a1 -&gt; m r
+</span><span class="hs-identifier hs-var">Control.Monad.liftM</span></span><span> </span><span class="annot"><span class="annottext">[Value] -&gt; Value
+forall a. [a] -&gt; a
+</span><span class="hs-identifier hs-var">Prelude.head</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation -&gt; m [Value]
+forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
+</span><a href="MLIR.AST.Builder.html#emitOp"><span class="hs-identifier hs-var">AST.emitOp</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation :: forall operand.
+Name
+-&gt; Location
+-&gt; ResultTypes
+-&gt; [operand]
+-&gt; [Region]
+-&gt; [Name]
+-&gt; Map Name Attribute
+-&gt; AbstractOperation operand
+</span><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span>
+</span><span id="line-201"></span><span>          </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opName :: Name
+</span><a href="MLIR.AST.html#opName"><span class="hs-identifier hs-var">opName</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Name
+</span><span class="hs-string">&quot;scf.for&quot;</span></span><span>
+</span><span id="line-202"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opLocation :: Location
+</span><a href="MLIR.AST.html#opLocation"><span class="hs-identifier hs-var">opLocation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Location
+</span><a href="MLIR.AST.html#UnknownLocation"><span class="hs-identifier hs-var">UnknownLocation</span></a></span><span>
+</span><span id="line-203"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opResultTypes :: ResultTypes
+</span><a href="MLIR.AST.html#opResultTypes"><span class="hs-identifier hs-var">opResultTypes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Type] -&gt; ResultTypes
+</span><a href="MLIR.AST.html#Explicit"><span class="hs-identifier hs-var">Explicit</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Type]
+</span><a href="#local-6989586621679505215"><span class="hs-identifier hs-var">ty0</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-204"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [Name]
+</span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">Value -&gt; Name
+</span><a href="MLIR.AST.Builder.html#operand"><span class="hs-identifier hs-var">AST.operand</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505214"><span class="hs-identifier hs-var">lowerBound</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; [Name] -&gt; [Name]
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">Value -&gt; Name
+</span><a href="MLIR.AST.Builder.html#operand"><span class="hs-identifier hs-var">AST.operand</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505213"><span class="hs-identifier hs-var">upperBound</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; [Name] -&gt; [Name]
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">Value -&gt; Name
+</span><a href="MLIR.AST.Builder.html#operand"><span class="hs-identifier hs-var">AST.operand</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505212"><span class="hs-identifier hs-var">step</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; [Name] -&gt; [Name]
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505211"><span class="hs-identifier hs-var">initArgs</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-205"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505209"><span class="hs-identifier hs-var">region</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-206"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opSuccessors :: [Name]
+</span><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-207"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opAttributes :: Map Name Attribute
+</span><a href="MLIR.AST.html#opAttributes"><span class="hs-identifier hs-var">opAttributes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Map Name Attribute
+</span><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier hs-var">NoAttrs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-208"></span><span>          </span><span class="hs-special">}</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-209"></span><span>
+</span><span id="line-210"></span><span class="hs-comment">-- * if</span><span>
+</span><span id="line-211"></span><span class="hs-comment">-- $if</span><span>
+</span><span id="line-212"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-213"></span><span class="hs-comment">-- The @scf.if@ operation represents an if-then-else construct for</span><span>
+</span><span id="line-214"></span><span class="hs-comment">-- conditionally executing two regions of code. The operand to an if operation</span><span>
+</span><span id="line-215"></span><span class="hs-comment">-- is a boolean value. For example:</span><span>
+</span><span id="line-216"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-217"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-218"></span><span class="hs-comment">-- scf.if %b  {</span><span>
+</span><span id="line-219"></span><span class="hs-comment">--   ...</span><span>
+</span><span id="line-220"></span><span class="hs-comment">-- } else {</span><span>
+</span><span id="line-221"></span><span class="hs-comment">--   ...</span><span>
+</span><span id="line-222"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-223"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-224"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-225"></span><span class="hs-comment">-- @scf.if@ may also return results that are defined in its regions. The</span><span>
+</span><span id="line-226"></span><span class="hs-comment">-- values defined are determined by which execution path is taken.</span><span>
+</span><span id="line-227"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-228"></span><span class="hs-comment">-- Example:</span><span>
+</span><span id="line-229"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-230"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-231"></span><span class="hs-comment">-- %x, %y = scf.if %b -&gt; (f32, f32) {</span><span>
+</span><span id="line-232"></span><span class="hs-comment">--   %x_true = ...</span><span>
+</span><span id="line-233"></span><span class="hs-comment">--   %y_true = ...</span><span>
+</span><span id="line-234"></span><span class="hs-comment">--   scf.yield %x_true, %y_true : f32, f32</span><span>
+</span><span id="line-235"></span><span class="hs-comment">-- } else {</span><span>
+</span><span id="line-236"></span><span class="hs-comment">--   %x_false = ...</span><span>
+</span><span id="line-237"></span><span class="hs-comment">--   %y_false = ...</span><span>
+</span><span id="line-238"></span><span class="hs-comment">--   scf.yield %x_false, %y_false : f32, f32</span><span>
+</span><span id="line-239"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-240"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-241"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-242"></span><span class="hs-comment">-- @scf.if@ regions are always terminated with \&quot;scf.yield\&quot;. If \&quot;scf.if\&quot;</span><span>
+</span><span id="line-243"></span><span class="hs-comment">-- defines no values, the \&quot;scf.yield\&quot; can be left out, and will be inserted</span><span>
+</span><span id="line-244"></span><span class="hs-comment">-- implicitly. Otherwise, it must be explicit.</span><span>
+</span><span id="line-245"></span><span class="hs-comment">-- Also, if \&quot;scf.if\&quot; defines one or more values, the \'else\' block cannot be</span><span>
+</span><span id="line-246"></span><span class="hs-comment">-- omitted.</span><span>
+</span><span id="line-247"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-248"></span><span class="hs-comment">-- Example:</span><span>
+</span><span id="line-249"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-250"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-251"></span><span class="hs-comment">-- scf.if %b  {</span><span>
+</span><span id="line-252"></span><span class="hs-comment">--   ...</span><span>
+</span><span id="line-253"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-254"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-255"></span><span class="hs-comment">--   </span><span>
+</span><span id="line-256"></span><span>
+</span><span id="line-257"></span><span class="hs-comment">-- | A builder for @scf.if@.</span><span>
+</span><span id="line-258"></span><span id="local-6989586621679505208"><span class="annot"><a href="MLIR.AST.Dialect.Generated.SCF.html#if_"><span class="hs-identifier hs-type">if_</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#MonadBlockBuilder"><span class="hs-identifier hs-type">MonadBlockBuilder</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505208"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.html#Type"><span class="hs-identifier hs-type">Type</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#RegionBuilderT"><span class="hs-identifier hs-type">RegionBuilderT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505208"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#RegionBuilderT"><span class="hs-identifier hs-type">RegionBuilderT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505208"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679505208"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span></span><span>
+</span><span id="line-259"></span><span id="if_"><span class="annot"><span class="annottext">if_ :: [Type]
+-&gt; Value -&gt; RegionBuilderT m () -&gt; RegionBuilderT m () -&gt; m Value
+</span><a href="MLIR.AST.Dialect.Generated.SCF.html#if_"><span class="hs-identifier hs-var hs-var">if_</span></a></span></span><span> </span><span id="local-6989586621679505206"><span class="annot"><span class="annottext">[Type]
+</span><a href="#local-6989586621679505206"><span class="hs-identifier hs-var">ty0</span></a></span></span><span> </span><span id="local-6989586621679505205"><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505205"><span class="hs-identifier hs-var">condition</span></a></span></span><span>  </span><span id="local-6989586621679505204"><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505204"><span class="hs-identifier hs-var">thenRegionBuilder</span></a></span></span><span> </span><span id="local-6989586621679505203"><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505203"><span class="hs-identifier hs-var">elseRegionBuilder</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-260"></span><span>  </span><span id="local-6989586621679505202"><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505202"><span class="hs-identifier hs-var">thenRegion</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m () -&gt; m Region
+forall (m :: * -&gt; *). Monad m =&gt; RegionBuilderT m () -&gt; m Region
+</span><a href="MLIR.AST.Builder.html#buildRegion"><span class="hs-identifier hs-var">AST.buildRegion</span></a></span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505204"><span class="hs-identifier hs-var">thenRegionBuilder</span></a></span><span>
+</span><span id="line-261"></span><span>  </span><span id="local-6989586621679505201"><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505201"><span class="hs-identifier hs-var">elseRegion</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m () -&gt; m Region
+forall (m :: * -&gt; *). Monad m =&gt; RegionBuilderT m () -&gt; m Region
+</span><a href="MLIR.AST.Builder.html#buildRegion"><span class="hs-identifier hs-var">AST.buildRegion</span></a></span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505203"><span class="hs-identifier hs-var">elseRegionBuilder</span></a></span><span>
+</span><span id="line-262"></span><span>  </span><span class="annot"><span class="annottext">([Value] -&gt; Value) -&gt; m [Value] -&gt; m Value
+forall (m :: * -&gt; *) a1 r. Monad m =&gt; (a1 -&gt; r) -&gt; m a1 -&gt; m r
+</span><span class="hs-identifier hs-var">Control.Monad.liftM</span></span><span> </span><span class="annot"><span class="annottext">[Value] -&gt; Value
+forall a. [a] -&gt; a
+</span><span class="hs-identifier hs-var">Prelude.head</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation -&gt; m [Value]
+forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
+</span><a href="MLIR.AST.Builder.html#emitOp"><span class="hs-identifier hs-var">AST.emitOp</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation :: forall operand.
+Name
+-&gt; Location
+-&gt; ResultTypes
+-&gt; [operand]
+-&gt; [Region]
+-&gt; [Name]
+-&gt; Map Name Attribute
+-&gt; AbstractOperation operand
+</span><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span>
+</span><span id="line-263"></span><span>          </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opName :: Name
+</span><a href="MLIR.AST.html#opName"><span class="hs-identifier hs-var">opName</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Name
+</span><span class="hs-string">&quot;scf.if&quot;</span></span><span>
+</span><span id="line-264"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opLocation :: Location
+</span><a href="MLIR.AST.html#opLocation"><span class="hs-identifier hs-var">opLocation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Location
+</span><a href="MLIR.AST.html#UnknownLocation"><span class="hs-identifier hs-var">UnknownLocation</span></a></span><span>
+</span><span id="line-265"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opResultTypes :: ResultTypes
+</span><a href="MLIR.AST.html#opResultTypes"><span class="hs-identifier hs-var">opResultTypes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Type] -&gt; ResultTypes
+</span><a href="MLIR.AST.html#Explicit"><span class="hs-identifier hs-var">Explicit</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Type]
+</span><a href="#local-6989586621679505206"><span class="hs-identifier hs-var">ty0</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-266"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [Name]
+</span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">Value -&gt; Name
+</span><a href="MLIR.AST.Builder.html#operand"><span class="hs-identifier hs-var">AST.operand</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505205"><span class="hs-identifier hs-var">condition</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
+</span><span id="line-267"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505202"><span class="hs-identifier hs-var">thenRegion</span></a></span><span> </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505201"><span class="hs-identifier hs-var">elseRegion</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-268"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opSuccessors :: [Name]
+</span><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-269"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opAttributes :: Map Name Attribute
+</span><a href="MLIR.AST.html#opAttributes"><span class="hs-identifier hs-var">opAttributes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Map Name Attribute
+</span><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier hs-var">NoAttrs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-270"></span><span>          </span><span class="hs-special">}</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-271"></span><span>
+</span><span id="line-272"></span><span class="hs-comment">-- * parallel</span><span>
+</span><span id="line-273"></span><span class="hs-comment">-- $parallel</span><span>
+</span><span id="line-274"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-275"></span><span class="hs-comment">-- The \&quot;scf.parallel\&quot; operation represents a loop nest taking 4 groups of SSA</span><span>
+</span><span id="line-276"></span><span class="hs-comment">-- values as operands that represent the lower bounds, upper bounds, steps and</span><span>
+</span><span id="line-277"></span><span class="hs-comment">-- initial values, respectively. The operation defines a variadic number of</span><span>
+</span><span id="line-278"></span><span class="hs-comment">-- SSA values for its induction variables. It has one region capturing the</span><span>
+</span><span id="line-279"></span><span class="hs-comment">-- loop body. The induction variables are represented as an argument of this</span><span>
+</span><span id="line-280"></span><span class="hs-comment">-- region. These SSA values always have type index, which is the size of the</span><span>
+</span><span id="line-281"></span><span class="hs-comment">-- machine word. The steps are values of type index, required to be positive.</span><span>
+</span><span id="line-282"></span><span class="hs-comment">-- The lower and upper bounds specify a half-open range: the range includes</span><span>
+</span><span id="line-283"></span><span class="hs-comment">-- the lower bound but does not include the upper bound. The initial values</span><span>
+</span><span id="line-284"></span><span class="hs-comment">-- have the same types as results of \&quot;scf.parallel\&quot;. If there are no results,</span><span>
+</span><span id="line-285"></span><span class="hs-comment">-- the keyword @init@ can be omitted.</span><span>
+</span><span id="line-286"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-287"></span><span class="hs-comment">-- Semantically we require that the iteration space can be iterated in any</span><span>
+</span><span id="line-288"></span><span class="hs-comment">-- order, and the loop body can be executed in parallel. If there are data</span><span>
+</span><span id="line-289"></span><span class="hs-comment">-- races, the behavior is undefined.</span><span>
+</span><span id="line-290"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-291"></span><span class="hs-comment">-- The parallel loop operation supports reduction of values produced by</span><span>
+</span><span id="line-292"></span><span class="hs-comment">-- individual iterations into a single result. This is modeled using the</span><span>
+</span><span id="line-293"></span><span class="hs-comment">-- scf.reduce operation (see scf.reduce for details). Each result of a</span><span>
+</span><span id="line-294"></span><span class="hs-comment">-- scf.parallel operation is associated with an initial value operand and</span><span>
+</span><span id="line-295"></span><span class="hs-comment">-- reduce operation that is an immediate child. Reductions are matched to</span><span>
+</span><span id="line-296"></span><span class="hs-comment">-- result and initial values in order of their appearance in the body.</span><span>
+</span><span id="line-297"></span><span class="hs-comment">-- Consequently, we require that the body region has the same number of</span><span>
+</span><span id="line-298"></span><span class="hs-comment">-- results and initial values as it has reduce operations.</span><span>
+</span><span id="line-299"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-300"></span><span class="hs-comment">-- The body region must contain exactly one block that terminates with</span><span>
+</span><span id="line-301"></span><span class="hs-comment">-- \&quot;scf.yield\&quot; without operands. Parsing ParallelOp will create such a region</span><span>
+</span><span id="line-302"></span><span class="hs-comment">-- and insert the terminator when it is absent from the custom format.</span><span>
+</span><span id="line-303"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-304"></span><span class="hs-comment">-- Example:</span><span>
+</span><span id="line-305"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-306"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-307"></span><span class="hs-comment">-- %init = arith.constant 0.0 : f32</span><span>
+</span><span id="line-308"></span><span class="hs-comment">-- scf.parallel (%iv) = (%lb) to (%ub) step (%step) init (%init) -&gt; f32 {</span><span>
+</span><span id="line-309"></span><span class="hs-comment">--   %elem_to_reduce = load %buffer[%iv] : memref\&lt;100xf32&gt;</span><span>
+</span><span id="line-310"></span><span class="hs-comment">--   scf.reduce(%elem_to_reduce) : f32 {</span><span>
+</span><span id="line-311"></span><span class="hs-comment">--     ^bb0(%lhs : f32, %rhs: f32):</span><span>
+</span><span id="line-312"></span><span class="hs-comment">--       %res = arith.addf %lhs, %rhs : f32</span><span>
+</span><span id="line-313"></span><span class="hs-comment">--       scf.reduce.return %res : f32</span><span>
+</span><span id="line-314"></span><span class="hs-comment">--   }</span><span>
+</span><span id="line-315"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-316"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-317"></span><span class="hs-comment">--   </span><span>
+</span><span id="line-318"></span><span>
+</span><span id="line-319"></span><span class="hs-comment">-- | A builder for @scf.parallel@.</span><span>
+</span><span id="line-320"></span><span id="local-6989586621679505200"><span class="annot"><a href="MLIR.AST.Dialect.Generated.SCF.html#parallel"><span class="hs-identifier hs-type">parallel</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#MonadBlockBuilder"><span class="hs-identifier hs-type">MonadBlockBuilder</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505200"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.html#Type"><span class="hs-identifier hs-type">Type</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#RegionBuilderT"><span class="hs-identifier hs-type">RegionBuilderT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505200"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679505200"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span></span><span>
+</span><span id="line-321"></span><span id="parallel"><span class="annot"><span class="annottext">parallel :: [Type]
+-&gt; [Value]
+-&gt; [Value]
+-&gt; [Value]
+-&gt; [Value]
+-&gt; RegionBuilderT m ()
+-&gt; m Value
+</span><a href="MLIR.AST.Dialect.Generated.SCF.html#parallel"><span class="hs-identifier hs-var hs-var">parallel</span></a></span></span><span> </span><span id="local-6989586621679505198"><span class="annot"><span class="annottext">[Type]
+</span><a href="#local-6989586621679505198"><span class="hs-identifier hs-var">ty0</span></a></span></span><span> </span><span id="local-6989586621679505197"><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505197"><span class="hs-identifier hs-var">lowerBound</span></a></span></span><span> </span><span id="local-6989586621679505196"><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505196"><span class="hs-identifier hs-var">upperBound</span></a></span></span><span> </span><span id="local-6989586621679505195"><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505195"><span class="hs-identifier hs-var">step</span></a></span></span><span> </span><span id="local-6989586621679505194"><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505194"><span class="hs-identifier hs-var">initVals</span></a></span></span><span>  </span><span id="local-6989586621679505193"><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505193"><span class="hs-identifier hs-var">regionBuilder</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-322"></span><span>  </span><span id="local-6989586621679505192"><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505192"><span class="hs-identifier hs-var">region</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m () -&gt; m Region
+forall (m :: * -&gt; *). Monad m =&gt; RegionBuilderT m () -&gt; m Region
+</span><a href="MLIR.AST.Builder.html#buildRegion"><span class="hs-identifier hs-var">AST.buildRegion</span></a></span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505193"><span class="hs-identifier hs-var">regionBuilder</span></a></span><span>
+</span><span id="line-323"></span><span>  </span><span class="annot"><span class="annottext">([Value] -&gt; Value) -&gt; m [Value] -&gt; m Value
+forall (m :: * -&gt; *) a1 r. Monad m =&gt; (a1 -&gt; r) -&gt; m a1 -&gt; m r
+</span><span class="hs-identifier hs-var">Control.Monad.liftM</span></span><span> </span><span class="annot"><span class="annottext">[Value] -&gt; Value
+forall a. [a] -&gt; a
+</span><span class="hs-identifier hs-var">Prelude.head</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation -&gt; m [Value]
+forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
+</span><a href="MLIR.AST.Builder.html#emitOp"><span class="hs-identifier hs-var">AST.emitOp</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation :: forall operand.
+Name
+-&gt; Location
+-&gt; ResultTypes
+-&gt; [operand]
+-&gt; [Region]
+-&gt; [Name]
+-&gt; Map Name Attribute
+-&gt; AbstractOperation operand
+</span><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span>
+</span><span id="line-324"></span><span>          </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opName :: Name
+</span><a href="MLIR.AST.html#opName"><span class="hs-identifier hs-var">opName</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Name
+</span><span class="hs-string">&quot;scf.parallel&quot;</span></span><span>
+</span><span id="line-325"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opLocation :: Location
+</span><a href="MLIR.AST.html#opLocation"><span class="hs-identifier hs-var">opLocation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Location
+</span><a href="MLIR.AST.html#UnknownLocation"><span class="hs-identifier hs-var">UnknownLocation</span></a></span><span>
+</span><span id="line-326"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opResultTypes :: ResultTypes
+</span><a href="MLIR.AST.html#opResultTypes"><span class="hs-identifier hs-var">opResultTypes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Type] -&gt; ResultTypes
+</span><a href="MLIR.AST.html#Explicit"><span class="hs-identifier hs-var">Explicit</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Type]
+</span><a href="#local-6989586621679505198"><span class="hs-identifier hs-var">ty0</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-327"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [Name]
+</span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505197"><span class="hs-identifier hs-var">lowerBound</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; [Name] -&gt; [Name]
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505196"><span class="hs-identifier hs-var">upperBound</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; [Name] -&gt; [Name]
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505195"><span class="hs-identifier hs-var">step</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; [Name] -&gt; [Name]
+forall a. [a] -&gt; [a] -&gt; [a]
+</span><span class="hs-operator hs-var">++</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505194"><span class="hs-identifier hs-var">initVals</span></a></span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-328"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505192"><span class="hs-identifier hs-var">region</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-329"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opSuccessors :: [Name]
+</span><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-330"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opAttributes :: Map Name Attribute
+</span><a href="MLIR.AST.html#opAttributes"><span class="hs-identifier hs-var">opAttributes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Map Name Attribute
+</span><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier hs-var">NoAttrs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-331"></span><span>              </span><span class="annot"><span class="annottext">Map Name Attribute -&gt; Map Name Attribute -&gt; Map Name Attribute
+forall a. Semigroup a =&gt; a -&gt; a -&gt; a
+</span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">Name -&gt; Attribute -&gt; Map Name Attribute
+</span><a href="MLIR.AST.html#namedAttribute"><span class="hs-identifier hs-var">AST.namedAttribute</span></a></span><span> </span><span class="annot"><span class="annottext">Name
+</span><span class="hs-string">&quot;operand_segment_sizes&quot;</span></span><span>
+</span><span id="line-332"></span><span>                   </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Type -&gt; DenseElements -&gt; Attribute
+</span><a href="MLIR.AST.html#DenseElementsAttr"><span class="hs-identifier hs-var">DenseElementsAttr</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Int] -&gt; Type -&gt; Type
+</span><a href="MLIR.AST.html#VectorType"><span class="hs-identifier hs-var">VectorType</span></a></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span class="hs-special">]</span><span> </span><span class="annot"><span class="annottext">(Type -&gt; Type) -&gt; Type -&gt; Type
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Signedness -&gt; UInt -&gt; Type
+</span><a href="MLIR.AST.html#IntegerType"><span class="hs-identifier hs-var">IntegerType</span></a></span><span> </span><span class="annot"><span class="annottext">Signedness
+</span><a href="MLIR.AST.html#Unsigned"><span class="hs-identifier hs-var">Unsigned</span></a></span><span> </span><span class="annot"><span class="annottext">UInt
+</span><span class="hs-number">32</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(DenseElements -&gt; Attribute) -&gt; DenseElements -&gt; Attribute
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span>
+</span><span id="line-333"></span><span>                      </span><span class="annot"><span class="annottext">IStorableArray Int Word32 -&gt; DenseElements
+forall i.
+(Show i, Ix i) =&gt;
+IStorableArray i Word32 -&gt; DenseElements
+</span><a href="MLIR.AST.html#DenseUInt32"><span class="hs-identifier hs-var">DenseUInt32</span></a></span><span> </span><span class="annot"><span class="annottext">(IStorableArray Int Word32 -&gt; DenseElements)
+-&gt; IStorableArray Int Word32 -&gt; DenseElements
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">(Int, Int) -&gt; [Word32] -&gt; IStorableArray Int Word32
+forall (a :: * -&gt; * -&gt; *) e i.
+(IArray a e, Ix i) =&gt;
+(i, i) -&gt; [e] -&gt; a i e
+</span><span class="hs-identifier hs-var">IArray.listArray</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">1</span></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">Int</span></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Int
+</span><span class="hs-number">4</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">([Word32] -&gt; IStorableArray Int Word32)
+-&gt; [Word32] -&gt; IStorableArray Int Word32
+forall a b. (a -&gt; b) -&gt; a -&gt; b
+</span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Word32
+forall a b. (Integral a, Num b) =&gt; a -&gt; b
+</span><span class="hs-identifier hs-var">Prelude.fromIntegral</span></span><span> </span><span class="annot"><span class="annottext">(Int -&gt; Word32) -&gt; [Int] -&gt; [Word32]
+forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
+</span><span class="hs-operator hs-var">&lt;$&gt;</span></span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">[Name] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">Prelude.length</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505197"><span class="hs-identifier hs-var">lowerBound</span></a></span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">Prelude.length</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505196"><span class="hs-identifier hs-var">upperBound</span></a></span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">Prelude.length</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505195"><span class="hs-identifier hs-var">step</span></a></span><span class="hs-special">)</span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">[Name] -&gt; Int
+forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
+</span><span class="hs-identifier hs-var">Prelude.length</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505194"><span class="hs-identifier hs-var">initVals</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span class="hs-special">)</span><span>
+</span><span id="line-334"></span><span>
+</span><span id="line-335"></span><span>          </span><span class="hs-special">}</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-336"></span><span>
+</span><span id="line-337"></span><span class="hs-comment">-- * reduce</span><span>
+</span><span id="line-338"></span><span class="hs-comment">-- $reduce</span><span>
+</span><span id="line-339"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-340"></span><span class="hs-comment">-- \&quot;scf.reduce\&quot; is an operation occurring inside \&quot;scf.parallel\&quot; operations.</span><span>
+</span><span id="line-341"></span><span class="hs-comment">-- It consists of one block with two arguments which have the same type as the</span><span>
+</span><span id="line-342"></span><span class="hs-comment">-- operand of \&quot;scf.reduce\&quot;.</span><span>
+</span><span id="line-343"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-344"></span><span class="hs-comment">-- \&quot;scf.reduce\&quot; is used to model the value for reduction computations of a</span><span>
+</span><span id="line-345"></span><span class="hs-comment">-- \&quot;scf.parallel\&quot; operation. It has to appear as an immediate child of a</span><span>
+</span><span id="line-346"></span><span class="hs-comment">-- \&quot;scf.parallel\&quot; and is associated with a result value of its parent</span><span>
+</span><span id="line-347"></span><span class="hs-comment">-- operation.</span><span>
+</span><span id="line-348"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-349"></span><span class="hs-comment">-- Association is in the order of appearance in the body where the first</span><span>
+</span><span id="line-350"></span><span class="hs-comment">-- result of a parallel loop operation corresponds to the first \&quot;scf.reduce\&quot;</span><span>
+</span><span id="line-351"></span><span class="hs-comment">-- in the operation\'s body region. The reduce operation takes a single</span><span>
+</span><span id="line-352"></span><span class="hs-comment">-- operand, which is the value to be used in the reduction.</span><span>
+</span><span id="line-353"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-354"></span><span class="hs-comment">-- The reduce operation contains a region whose entry block expects two</span><span>
+</span><span id="line-355"></span><span class="hs-comment">-- arguments of the same type as the operand. As the iteration order of the</span><span>
+</span><span id="line-356"></span><span class="hs-comment">-- parallel loop and hence reduction order is unspecified, the result of</span><span>
+</span><span id="line-357"></span><span class="hs-comment">-- reduction may be non-deterministic unless the operation is associative and</span><span>
+</span><span id="line-358"></span><span class="hs-comment">-- commutative.</span><span>
+</span><span id="line-359"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-360"></span><span class="hs-comment">-- The result of the reduce operation\'s body must have the same type as the</span><span>
+</span><span id="line-361"></span><span class="hs-comment">-- operands and associated result value of the parallel loop operation.</span><span>
+</span><span id="line-362"></span><span class="hs-comment">-- Example:</span><span>
+</span><span id="line-363"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-364"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-365"></span><span class="hs-comment">-- %operand = arith.constant 1.0 : f32</span><span>
+</span><span id="line-366"></span><span class="hs-comment">-- scf.reduce(%operand) : f32 {</span><span>
+</span><span id="line-367"></span><span class="hs-comment">--   ^bb0(%lhs : f32, %rhs: f32):</span><span>
+</span><span id="line-368"></span><span class="hs-comment">--     %res = arith.addf %lhs, %rhs : f32</span><span>
+</span><span id="line-369"></span><span class="hs-comment">--     scf.reduce.return %res : f32</span><span>
+</span><span id="line-370"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-371"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-372"></span><span class="hs-comment">--   </span><span>
+</span><span id="line-373"></span><span>
+</span><span id="line-374"></span><span class="hs-comment">-- | A builder for @scf.reduce@.</span><span>
+</span><span id="line-375"></span><span id="local-6989586621679505183"><span class="annot"><a href="MLIR.AST.Dialect.Generated.SCF.html#reduce"><span class="hs-identifier hs-type">reduce</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#MonadBlockBuilder"><span class="hs-identifier hs-type">MonadBlockBuilder</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505183"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#RegionBuilderT"><span class="hs-identifier hs-type">RegionBuilderT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505183"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679505183"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span></span><span>
+</span><span id="line-376"></span><span id="reduce"><span class="annot"><span class="annottext">reduce :: Value -&gt; RegionBuilderT m () -&gt; m ()
+</span><a href="MLIR.AST.Dialect.Generated.SCF.html#reduce"><span class="hs-identifier hs-var hs-var">reduce</span></a></span></span><span>  </span><span id="local-6989586621679505181"><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505181"><span class="hs-identifier hs-var">operand</span></a></span></span><span>  </span><span id="local-6989586621679505180"><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505180"><span class="hs-identifier hs-var">reductionOperatorBuilder</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-377"></span><span>  </span><span id="local-6989586621679505179"><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505179"><span class="hs-identifier hs-var">reductionOperator</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m () -&gt; m Region
+forall (m :: * -&gt; *). Monad m =&gt; RegionBuilderT m () -&gt; m Region
+</span><a href="MLIR.AST.Builder.html#buildRegion"><span class="hs-identifier hs-var">AST.buildRegion</span></a></span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505180"><span class="hs-identifier hs-var">reductionOperatorBuilder</span></a></span><span>
+</span><span id="line-378"></span><span>  </span><span class="annot"><span class="annottext">m [Value] -&gt; m ()
+forall (f :: * -&gt; *) a. Functor f =&gt; f a -&gt; f ()
+</span><span class="hs-identifier hs-var">Control.Monad.void</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation -&gt; m [Value]
+forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
+</span><a href="MLIR.AST.Builder.html#emitOp"><span class="hs-identifier hs-var">AST.emitOp</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation :: forall operand.
+Name
+-&gt; Location
+-&gt; ResultTypes
+-&gt; [operand]
+-&gt; [Region]
+-&gt; [Name]
+-&gt; Map Name Attribute
+-&gt; AbstractOperation operand
+</span><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span>
+</span><span id="line-379"></span><span>          </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opName :: Name
+</span><a href="MLIR.AST.html#opName"><span class="hs-identifier hs-var">opName</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Name
+</span><span class="hs-string">&quot;scf.reduce&quot;</span></span><span>
+</span><span id="line-380"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opLocation :: Location
+</span><a href="MLIR.AST.html#opLocation"><span class="hs-identifier hs-var">opLocation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Location
+</span><a href="MLIR.AST.html#UnknownLocation"><span class="hs-identifier hs-var">UnknownLocation</span></a></span><span>
+</span><span id="line-381"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opResultTypes :: ResultTypes
+</span><a href="MLIR.AST.html#opResultTypes"><span class="hs-identifier hs-var">opResultTypes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Type] -&gt; ResultTypes
+</span><a href="MLIR.AST.html#Explicit"><span class="hs-identifier hs-var">Explicit</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-382"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [Name]
+</span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">Value -&gt; Name
+</span><a href="MLIR.AST.Builder.html#operand"><span class="hs-identifier hs-var">AST.operand</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505181"><span class="hs-identifier hs-var">operand</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
+</span><span id="line-383"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505179"><span class="hs-identifier hs-var">reductionOperator</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-384"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opSuccessors :: [Name]
+</span><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-385"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opAttributes :: Map Name Attribute
+</span><a href="MLIR.AST.html#opAttributes"><span class="hs-identifier hs-var">opAttributes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Map Name Attribute
+</span><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier hs-var">NoAttrs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-386"></span><span>          </span><span class="hs-special">}</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-387"></span><span>
+</span><span id="line-388"></span><span class="hs-comment">-- * reduce.return</span><span>
+</span><span id="line-389"></span><span class="hs-comment">-- $reduce.return</span><span>
+</span><span id="line-390"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-391"></span><span class="hs-comment">-- \&quot;scf.reduce.return\&quot; is a special terminator operation for the block inside</span><span>
+</span><span id="line-392"></span><span class="hs-comment">-- \&quot;scf.reduce\&quot;. It terminates the region. It should have the same type as</span><span>
+</span><span id="line-393"></span><span class="hs-comment">-- the operand of \&quot;scf.reduce\&quot;. Example for the custom format:</span><span>
+</span><span id="line-394"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-395"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-396"></span><span class="hs-comment">-- scf.reduce.return %res : f32</span><span>
+</span><span id="line-397"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-398"></span><span class="hs-comment">--   </span><span>
+</span><span id="line-399"></span><span>
+</span><span id="line-400"></span><span class="hs-comment">-- | A pattern for @scf.reduce.return@.</span><span>
+</span><span id="line-401"></span><span id="local-6989586621679505257"><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="MLIR.AST.Dialect.Generated.SCF.html#ReduceReturn"><span class="hs-identifier hs-type">ReduceReturn</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Location"><span class="hs-identifier hs-type">Location</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679505257"><span class="hs-identifier hs-type">operand</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#AbstractOperation"><span class="hs-identifier hs-type">AbstractOperation</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505257"><span class="hs-identifier hs-type">operand</span></a></span></span><span>
+</span><span id="line-402"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bReduceReturn"><span id="%24mReduceReturn"><span id="ReduceReturn"><span class="annot"><span class="annottext">$bReduceReturn :: Location -&gt; operand -&gt; AbstractOperation operand
+$mReduceReturn :: forall r operand.
+AbstractOperation operand
+-&gt; (Location -&gt; operand -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="MLIR.AST.Dialect.Generated.SCF.html#%24bReduceReturn"><span class="hs-identifier hs-var hs-var hs-var">ReduceReturn</span></a></span></span></span></span><span> </span><span class="annot"><a href="#local-6989586621679505175"><span class="hs-identifier hs-type">loc</span></a></span><span>  </span><span class="annot"><a href="#local-6989586621679505174"><span class="hs-identifier hs-type">result</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span>
+</span><span id="line-403"></span><span>          </span><span class="hs-special">{</span><span> </span><span class="annot"><a href="MLIR.AST.html#opName"><span class="hs-identifier hs-var">opName</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-string">&quot;scf.reduce.return&quot;</span></span><span>
+</span><span id="line-404"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opLocation"><span class="hs-identifier hs-var">opLocation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679505175"><span class="annot"><a href="#local-6989586621679505175"><span class="hs-identifier hs-var">loc</span></a></span></span><span>
+</span><span id="line-405"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opResultTypes"><span class="hs-identifier hs-var">opResultTypes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.html#Explicit"><span class="hs-identifier hs-type">Explicit</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-406"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span id="local-6989586621679505174"><span class="annot"><a href="#local-6989586621679505174"><span class="hs-identifier hs-var">result</span></a></span></span><span class="hs-special">]</span><span>
+</span><span id="line-407"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-408"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-409"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opAttributes"><span class="hs-identifier hs-var">opAttributes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier hs-type">NoAttrs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-410"></span><span>          </span><span class="hs-special">}</span><span>
+</span><span id="line-411"></span><span>
+</span><span id="line-412"></span><span class="hs-comment">-- | A builder for @scf.reduce.return@.</span><span>
+</span><span id="line-413"></span><span id="local-6989586621679505173"><span class="annot"><a href="MLIR.AST.Dialect.Generated.SCF.html#reduce_return"><span class="hs-identifier hs-type">reduce_return</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#MonadBlockBuilder"><span class="hs-identifier hs-type">MonadBlockBuilder</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505173"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679505173"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#EndOfBlock"><span class="hs-identifier hs-type">EndOfBlock</span></a></span></span><span>
+</span><span id="line-414"></span><span id="reduce_return"><span class="annot"><span class="annottext">reduce_return :: Value -&gt; m EndOfBlock
+</span><a href="MLIR.AST.Dialect.Generated.SCF.html#reduce_return"><span class="hs-identifier hs-var hs-var">reduce_return</span></a></span></span><span>  </span><span id="local-6989586621679505171"><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505171"><span class="hs-identifier hs-var">result</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-415"></span><span>  </span><span class="annot"><span class="annottext">m [Value] -&gt; m ()
+forall (f :: * -&gt; *) a. Functor f =&gt; f a -&gt; f ()
+</span><span class="hs-identifier hs-var">Control.Monad.void</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation -&gt; m [Value]
+forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
+</span><a href="MLIR.AST.Builder.html#emitOp"><span class="hs-identifier hs-var">AST.emitOp</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation :: forall operand.
+Name
+-&gt; Location
+-&gt; ResultTypes
+-&gt; [operand]
+-&gt; [Region]
+-&gt; [Name]
+-&gt; Map Name Attribute
+-&gt; AbstractOperation operand
+</span><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span>
+</span><span id="line-416"></span><span>          </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opName :: Name
+</span><a href="MLIR.AST.html#opName"><span class="hs-identifier hs-var">opName</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Name
+</span><span class="hs-string">&quot;scf.reduce.return&quot;</span></span><span>
+</span><span id="line-417"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opLocation :: Location
+</span><a href="MLIR.AST.html#opLocation"><span class="hs-identifier hs-var">opLocation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Location
+</span><a href="MLIR.AST.html#UnknownLocation"><span class="hs-identifier hs-var">UnknownLocation</span></a></span><span>
+</span><span id="line-418"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opResultTypes :: ResultTypes
+</span><a href="MLIR.AST.html#opResultTypes"><span class="hs-identifier hs-var">opResultTypes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Type] -&gt; ResultTypes
+</span><a href="MLIR.AST.html#Explicit"><span class="hs-identifier hs-var">Explicit</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-419"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [Name]
+</span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">(</span><span class="annot"><span class="annottext">Value -&gt; Name
+</span><a href="MLIR.AST.Builder.html#operand"><span class="hs-identifier hs-var">AST.operand</span></a></span><span> </span><span class="annot"><span class="annottext">Value
+</span><a href="#local-6989586621679505171"><span class="hs-identifier hs-var">result</span></a></span><span class="hs-special">)</span><span class="hs-special">]</span><span>
+</span><span id="line-420"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-421"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opSuccessors :: [Name]
+</span><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-422"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opAttributes :: Map Name Attribute
+</span><a href="MLIR.AST.html#opAttributes"><span class="hs-identifier hs-var">opAttributes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Map Name Attribute
+</span><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier hs-var">NoAttrs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-423"></span><span>          </span><span class="hs-special">}</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-424"></span><span>  </span><span class="annot"><span class="annottext">m EndOfBlock
+forall (m :: * -&gt; *). Monad m =&gt; m EndOfBlock
+</span><a href="MLIR.AST.Builder.html#terminateBlock"><span class="hs-identifier hs-var">AST.terminateBlock</span></a></span><span>
+</span><span id="line-425"></span><span>
+</span><span id="line-426"></span><span class="hs-comment">-- * while</span><span>
+</span><span id="line-427"></span><span class="hs-comment">-- $while</span><span>
+</span><span id="line-428"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-429"></span><span class="hs-comment">-- This operation represents a generic \&quot;while\&quot;/\&quot;do-while\&quot; loop that keeps</span><span>
+</span><span id="line-430"></span><span class="hs-comment">-- iterating as long as a condition is satisfied. There is no restriction on</span><span>
+</span><span id="line-431"></span><span class="hs-comment">-- the complexity of the condition. It consists of two regions (with single</span><span>
+</span><span id="line-432"></span><span class="hs-comment">-- block each): \&quot;before\&quot; region and \&quot;after\&quot; region. The names of regions</span><span>
+</span><span id="line-433"></span><span class="hs-comment">-- indicates whether they execute before or after the condition check.</span><span>
+</span><span id="line-434"></span><span class="hs-comment">-- Therefore, if the main loop payload is located in the \&quot;before\&quot; region, the</span><span>
+</span><span id="line-435"></span><span class="hs-comment">-- operation is a \&quot;do-while\&quot; loop. Otherwise, it is a \&quot;while\&quot; loop.</span><span>
+</span><span id="line-436"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-437"></span><span class="hs-comment">-- The \&quot;before\&quot; region terminates with a special operation, @scf.condition@,</span><span>
+</span><span id="line-438"></span><span class="hs-comment">-- that accepts as its first operand an @i1@ value indicating whether to</span><span>
+</span><span id="line-439"></span><span class="hs-comment">-- proceed to the \&quot;after\&quot; region (value is @true@) or not. The two regions</span><span>
+</span><span id="line-440"></span><span class="hs-comment">-- communicate by means of region arguments. Initially, the \&quot;before\&quot; region</span><span>
+</span><span id="line-441"></span><span class="hs-comment">-- accepts as arguments the operands of the @scf.while@ operation and uses them</span><span>
+</span><span id="line-442"></span><span class="hs-comment">-- to evaluate the condition. It forwards the trailing, non-condition operands</span><span>
+</span><span id="line-443"></span><span class="hs-comment">-- of the @scf.condition@ terminator either to the \&quot;after\&quot; region if the</span><span>
+</span><span id="line-444"></span><span class="hs-comment">-- control flow is transferred there or to results of the @scf.while@ operation</span><span>
+</span><span id="line-445"></span><span class="hs-comment">-- otherwise. The \&quot;after\&quot; region takes as arguments the values produced by the</span><span>
+</span><span id="line-446"></span><span class="hs-comment">-- \&quot;before\&quot; region and uses @scf.yield@ to supply new arguments for the</span><span>
+</span><span id="line-447"></span><span class="hs-comment">-- \&quot;before\&quot; region, into which it transfers the control flow unconditionally.</span><span>
+</span><span id="line-448"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-449"></span><span class="hs-comment">-- A simple \&quot;while\&quot; loop can be represented as follows.</span><span>
+</span><span id="line-450"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-451"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-452"></span><span class="hs-comment">-- %res = scf.while (%arg1 = %init1) : (f32) -&gt; f32 {</span><span>
+</span><span id="line-453"></span><span class="hs-comment">--   /* \&quot;Before\&quot; region.</span><span>
+</span><span id="line-454"></span><span class="hs-comment">--    * In a \&quot;while\&quot; loop, this region computes the condition. */</span><span>
+</span><span id="line-455"></span><span class="hs-comment">--   %condition = call \@evaluate_condition(%arg1) : (f32) -&gt; i1</span><span>
+</span><span id="line-456"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-457"></span><span class="hs-comment">--   /* Forward the argument (as result or \&quot;after\&quot; region argument). */</span><span>
+</span><span id="line-458"></span><span class="hs-comment">--   scf.condition(%condition) %arg1 : f32</span><span>
+</span><span id="line-459"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-460"></span><span class="hs-comment">-- } do {</span><span>
+</span><span id="line-461"></span><span class="hs-comment">-- ^bb0(%arg2: f32):</span><span>
+</span><span id="line-462"></span><span class="hs-comment">--   /* \&quot;After region.</span><span>
+</span><span id="line-463"></span><span class="hs-comment">--    * In a \&quot;while\&quot; loop, this region is the loop body. */</span><span>
+</span><span id="line-464"></span><span class="hs-comment">--   %next = call \@payload(%arg2) : (f32) -&gt; f32</span><span>
+</span><span id="line-465"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-466"></span><span class="hs-comment">--   /* Forward the new value to the \&quot;before\&quot; region.</span><span>
+</span><span id="line-467"></span><span class="hs-comment">--    * The operand types must match the types of the @scf.while@ operands. */</span><span>
+</span><span id="line-468"></span><span class="hs-comment">--   scf.yield %next : f32</span><span>
+</span><span id="line-469"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-470"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-471"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-472"></span><span class="hs-comment">-- A simple \&quot;do-while\&quot; loop can be represented by reducing the \&quot;after\&quot; block</span><span>
+</span><span id="line-473"></span><span class="hs-comment">-- to a simple forwarder.</span><span>
+</span><span id="line-474"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-475"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-476"></span><span class="hs-comment">-- %res = scf.while (%arg1 = %init1) : (f32) -&gt; f32 {</span><span>
+</span><span id="line-477"></span><span class="hs-comment">--   /* \&quot;Before\&quot; region.</span><span>
+</span><span id="line-478"></span><span class="hs-comment">--    * In a \&quot;do-while\&quot; loop, this region contains the loop body. */</span><span>
+</span><span id="line-479"></span><span class="hs-comment">--   %next = call \@payload(%arg1) : (f32) -&gt; f32</span><span>
+</span><span id="line-480"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-481"></span><span class="hs-comment">--   /* And also evaluates the condition. */</span><span>
+</span><span id="line-482"></span><span class="hs-comment">--   %condition = call \@evaluate_condition(%arg1) : (f32) -&gt; i1</span><span>
+</span><span id="line-483"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-484"></span><span class="hs-comment">--   /* Loop through the \&quot;after\&quot; region. */</span><span>
+</span><span id="line-485"></span><span class="hs-comment">--   scf.condition(%condition) %next : f32</span><span>
+</span><span id="line-486"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-487"></span><span class="hs-comment">-- } do {</span><span>
+</span><span id="line-488"></span><span class="hs-comment">-- ^bb0(%arg2: f32):</span><span>
+</span><span id="line-489"></span><span class="hs-comment">--   /* \&quot;After\&quot; region.</span><span>
+</span><span id="line-490"></span><span class="hs-comment">--    * Forwards the values back to \&quot;before\&quot; region unmodified. */</span><span>
+</span><span id="line-491"></span><span class="hs-comment">--   scf.yield %arg2 : f32</span><span>
+</span><span id="line-492"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-493"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-494"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-495"></span><span class="hs-comment">-- Note that the types of region arguments need not to match with each other.</span><span>
+</span><span id="line-496"></span><span class="hs-comment">-- The op expects the operand types to match with argument types of the</span><span>
+</span><span id="line-497"></span><span class="hs-comment">-- \&quot;before\&quot; region\&quot;; the result types to match with the trailing operand types</span><span>
+</span><span id="line-498"></span><span class="hs-comment">-- of the terminator of the \&quot;before\&quot; region, and with the argument types of the</span><span>
+</span><span id="line-499"></span><span class="hs-comment">-- \&quot;after\&quot; region. The following scheme can be used to share the results of</span><span>
+</span><span id="line-500"></span><span class="hs-comment">-- some operations executed in the \&quot;before\&quot; region with the \&quot;after\&quot; region,</span><span>
+</span><span id="line-501"></span><span class="hs-comment">-- avoiding the need to recompute them.</span><span>
+</span><span id="line-502"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-503"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-504"></span><span class="hs-comment">-- %res = scf.while (%arg1 = %init1) : (f32) -&gt; i64 {</span><span>
+</span><span id="line-505"></span><span class="hs-comment">--   /* One can perform some computations, e.g., necessary to evaluate the</span><span>
+</span><span id="line-506"></span><span class="hs-comment">--    * condition, in the \&quot;before\&quot; region and forward their results to the</span><span>
+</span><span id="line-507"></span><span class="hs-comment">--    * \&quot;after\&quot; region. */</span><span>
+</span><span id="line-508"></span><span class="hs-comment">--   %shared = call \@shared_compute(%arg1) : (f32) -&gt; i64</span><span>
+</span><span id="line-509"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-510"></span><span class="hs-comment">--   /* Evaluate the condition. */</span><span>
+</span><span id="line-511"></span><span class="hs-comment">--   %condition = call \@evaluate_condition(%arg1, %shared) : (f32, i64) -&gt; i1</span><span>
+</span><span id="line-512"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-513"></span><span class="hs-comment">--   /* Forward the result of the shared computation to the \&quot;after\&quot; region.</span><span>
+</span><span id="line-514"></span><span class="hs-comment">--    * The types must match the arguments of the \&quot;after\&quot; region as well as</span><span>
+</span><span id="line-515"></span><span class="hs-comment">--    * those of the @scf.while@ results. */</span><span>
+</span><span id="line-516"></span><span class="hs-comment">--   scf.condition(%condition) %shared : i64</span><span>
+</span><span id="line-517"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-518"></span><span class="hs-comment">-- } do {</span><span>
+</span><span id="line-519"></span><span class="hs-comment">-- ^bb0(%arg2: i64) {</span><span>
+</span><span id="line-520"></span><span class="hs-comment">--   /* Use the partial result to compute the rest of the payload in the</span><span>
+</span><span id="line-521"></span><span class="hs-comment">--    * \&quot;after\&quot; region. */</span><span>
+</span><span id="line-522"></span><span class="hs-comment">--   %res = call \@payload(%arg2) : (i64) -&gt; f32</span><span>
+</span><span id="line-523"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-524"></span><span class="hs-comment">--   /* Forward the new value to the \&quot;before\&quot; region.</span><span>
+</span><span id="line-525"></span><span class="hs-comment">--    * The operand types must match the types of the @scf.while@ operands. */</span><span>
+</span><span id="line-526"></span><span class="hs-comment">--   scf.yield %res : f32</span><span>
+</span><span id="line-527"></span><span class="hs-comment">-- }</span><span>
+</span><span id="line-528"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-529"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-530"></span><span class="hs-comment">-- The custom syntax for this operation is as follows.</span><span>
+</span><span id="line-531"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-532"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-533"></span><span class="hs-comment">-- op ::= @scf.while@ assignments @:@ function-type region @do@ region</span><span>
+</span><span id="line-534"></span><span class="hs-comment">--        @attributes@ attribute-dict</span><span>
+</span><span id="line-535"></span><span class="hs-comment">-- initializer ::= /* empty */ | @(@ assignment-list @)@</span><span>
+</span><span id="line-536"></span><span class="hs-comment">-- assignment-list ::= assignment | assignment @,@ assignment-list</span><span>
+</span><span id="line-537"></span><span class="hs-comment">-- assignment ::= ssa-value @=@ ssa-value</span><span>
+</span><span id="line-538"></span><span class="hs-comment">-- @</span><span>
+</span><span id="line-539"></span><span class="hs-comment">--   </span><span>
+</span><span id="line-540"></span><span>
+</span><span id="line-541"></span><span class="hs-comment">-- | A builder for @scf.while@.</span><span>
+</span><span id="line-542"></span><span id="local-6989586621679505170"><span class="annot"><a href="MLIR.AST.Dialect.Generated.SCF.html#while"><span class="hs-identifier hs-type">while</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#MonadBlockBuilder"><span class="hs-identifier hs-type">MonadBlockBuilder</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505170"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.html#Type"><span class="hs-identifier hs-type">Type</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#RegionBuilderT"><span class="hs-identifier hs-type">RegionBuilderT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505170"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#RegionBuilderT"><span class="hs-identifier hs-type">RegionBuilderT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505170"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679505170"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span></span><span>
+</span><span id="line-543"></span><span id="while"><span class="annot"><span class="annottext">while :: [Type]
+-&gt; [Value] -&gt; RegionBuilderT m () -&gt; RegionBuilderT m () -&gt; m Value
+</span><a href="MLIR.AST.Dialect.Generated.SCF.html#while"><span class="hs-identifier hs-var hs-var">while</span></a></span></span><span> </span><span id="local-6989586621679505168"><span class="annot"><span class="annottext">[Type]
+</span><a href="#local-6989586621679505168"><span class="hs-identifier hs-var">ty0</span></a></span></span><span> </span><span id="local-6989586621679505167"><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505167"><span class="hs-identifier hs-var">inits</span></a></span></span><span>  </span><span id="local-6989586621679505166"><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505166"><span class="hs-identifier hs-var">beforeBuilder</span></a></span></span><span> </span><span id="local-6989586621679505165"><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505165"><span class="hs-identifier hs-var">afterBuilder</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-544"></span><span>  </span><span id="local-6989586621679505164"><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505164"><span class="hs-identifier hs-var">before</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m () -&gt; m Region
+forall (m :: * -&gt; *). Monad m =&gt; RegionBuilderT m () -&gt; m Region
+</span><a href="MLIR.AST.Builder.html#buildRegion"><span class="hs-identifier hs-var">AST.buildRegion</span></a></span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505166"><span class="hs-identifier hs-var">beforeBuilder</span></a></span><span>
+</span><span id="line-545"></span><span>  </span><span id="local-6989586621679505163"><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505163"><span class="hs-identifier hs-var">after</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m () -&gt; m Region
+forall (m :: * -&gt; *). Monad m =&gt; RegionBuilderT m () -&gt; m Region
+</span><a href="MLIR.AST.Builder.html#buildRegion"><span class="hs-identifier hs-var">AST.buildRegion</span></a></span><span> </span><span class="annot"><span class="annottext">RegionBuilderT m ()
+</span><a href="#local-6989586621679505165"><span class="hs-identifier hs-var">afterBuilder</span></a></span><span>
+</span><span id="line-546"></span><span>  </span><span class="annot"><span class="annottext">([Value] -&gt; Value) -&gt; m [Value] -&gt; m Value
+forall (m :: * -&gt; *) a1 r. Monad m =&gt; (a1 -&gt; r) -&gt; m a1 -&gt; m r
+</span><span class="hs-identifier hs-var">Control.Monad.liftM</span></span><span> </span><span class="annot"><span class="annottext">[Value] -&gt; Value
+forall a. [a] -&gt; a
+</span><span class="hs-identifier hs-var">Prelude.head</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation -&gt; m [Value]
+forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
+</span><a href="MLIR.AST.Builder.html#emitOp"><span class="hs-identifier hs-var">AST.emitOp</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation :: forall operand.
+Name
+-&gt; Location
+-&gt; ResultTypes
+-&gt; [operand]
+-&gt; [Region]
+-&gt; [Name]
+-&gt; Map Name Attribute
+-&gt; AbstractOperation operand
+</span><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span>
+</span><span id="line-547"></span><span>          </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opName :: Name
+</span><a href="MLIR.AST.html#opName"><span class="hs-identifier hs-var">opName</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Name
+</span><span class="hs-string">&quot;scf.while&quot;</span></span><span>
+</span><span id="line-548"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opLocation :: Location
+</span><a href="MLIR.AST.html#opLocation"><span class="hs-identifier hs-var">opLocation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Location
+</span><a href="MLIR.AST.html#UnknownLocation"><span class="hs-identifier hs-var">UnknownLocation</span></a></span><span>
+</span><span id="line-549"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opResultTypes :: ResultTypes
+</span><a href="MLIR.AST.html#opResultTypes"><span class="hs-identifier hs-var">opResultTypes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Type] -&gt; ResultTypes
+</span><a href="MLIR.AST.html#Explicit"><span class="hs-identifier hs-var">Explicit</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Type]
+</span><a href="#local-6989586621679505168"><span class="hs-identifier hs-var">ty0</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-550"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [Name]
+</span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505167"><span class="hs-identifier hs-var">inits</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-551"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505164"><span class="hs-identifier hs-var">before</span></a></span><span> </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">Region
+</span><a href="#local-6989586621679505163"><span class="hs-identifier hs-var">after</span></a></span><span class="hs-special">]</span><span>
+</span><span id="line-552"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opSuccessors :: [Name]
+</span><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-553"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opAttributes :: Map Name Attribute
+</span><a href="MLIR.AST.html#opAttributes"><span class="hs-identifier hs-var">opAttributes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Map Name Attribute
+</span><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier hs-var">NoAttrs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-554"></span><span>          </span><span class="hs-special">}</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-555"></span><span>
+</span><span id="line-556"></span><span class="hs-comment">-- * yield</span><span>
+</span><span id="line-557"></span><span class="hs-comment">-- $yield</span><span>
+</span><span id="line-558"></span><span class="hs-comment">-- </span><span>
+</span><span id="line-559"></span><span class="hs-comment">-- \&quot;scf.yield\&quot; yields an SSA value from the SCF dialect op region and</span><span>
+</span><span id="line-560"></span><span class="hs-comment">-- terminates the regions. The semantics of how the values are yielded is</span><span>
+</span><span id="line-561"></span><span class="hs-comment">-- defined by the parent operation.</span><span>
+</span><span id="line-562"></span><span class="hs-comment">-- If \&quot;scf.yield\&quot; has any operands, the operands must match the parent</span><span>
+</span><span id="line-563"></span><span class="hs-comment">-- operation\'s results.</span><span>
+</span><span id="line-564"></span><span class="hs-comment">-- If the parent operation defines no values, then the \&quot;scf.yield\&quot; may be</span><span>
+</span><span id="line-565"></span><span class="hs-comment">-- left out in the custom syntax and the builders will insert one implicitly.</span><span>
+</span><span id="line-566"></span><span class="hs-comment">-- Otherwise, it has to be present in the syntax to indicate which values are</span><span>
+</span><span id="line-567"></span><span class="hs-comment">-- yielded.</span><span>
+</span><span id="line-568"></span><span class="hs-comment">--   </span><span>
+</span><span id="line-569"></span><span>
+</span><span id="line-570"></span><span class="hs-comment">-- | A pattern for @scf.yield@.</span><span>
+</span><span id="line-571"></span><span id="local-6989586621679505251"><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="MLIR.AST.Dialect.Generated.SCF.html#Yield"><span class="hs-identifier hs-type">Yield</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Location"><span class="hs-identifier hs-type">Location</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="#local-6989586621679505251"><span class="hs-identifier hs-type">operand</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#AbstractOperation"><span class="hs-identifier hs-type">AbstractOperation</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505251"><span class="hs-identifier hs-type">operand</span></a></span></span><span>
+</span><span id="line-572"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bYield"><span id="%24mYield"><span id="Yield"><span class="annot"><span class="annottext">$bYield :: Location -&gt; [operand] -&gt; AbstractOperation operand
+$mYield :: forall r operand.
+AbstractOperation operand
+-&gt; (Location -&gt; [operand] -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
+</span><a href="MLIR.AST.Dialect.Generated.SCF.html#%24bYield"><span class="hs-identifier hs-var hs-var hs-var">Yield</span></a></span></span></span></span><span> </span><span class="annot"><a href="#local-6989586621679505159"><span class="hs-identifier hs-type">loc</span></a></span><span>  </span><span class="annot"><a href="#local-6989586621679505158"><span class="hs-identifier hs-type">results</span></a></span><span>  </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span>
+</span><span id="line-573"></span><span>          </span><span class="hs-special">{</span><span> </span><span class="annot"><a href="MLIR.AST.html#opName"><span class="hs-identifier hs-var">opName</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-string">&quot;scf.yield&quot;</span></span><span>
+</span><span id="line-574"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opLocation"><span class="hs-identifier hs-var">opLocation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679505159"><span class="annot"><a href="#local-6989586621679505159"><span class="hs-identifier hs-var">loc</span></a></span></span><span>
+</span><span id="line-575"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opResultTypes"><span class="hs-identifier hs-var">opResultTypes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.html#Explicit"><span class="hs-identifier hs-type">Explicit</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-576"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="local-6989586621679505158"><span class="annot"><a href="#local-6989586621679505158"><span class="hs-identifier hs-var">results</span></a></span></span><span>
+</span><span id="line-577"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-578"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-579"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.html#opAttributes"><span class="hs-identifier hs-var">opAttributes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier hs-type">NoAttrs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-580"></span><span>          </span><span class="hs-special">}</span><span>
+</span><span id="line-581"></span><span>
+</span><span id="line-582"></span><span class="hs-comment">-- | A builder for @scf.yield@.</span><span>
+</span><span id="line-583"></span><span id="local-6989586621679505157"><span class="annot"><a href="MLIR.AST.Dialect.Generated.SCF.html#yield"><span class="hs-identifier hs-type">yield</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="hs-special">(</span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#MonadBlockBuilder"><span class="hs-identifier hs-type">MonadBlockBuilder</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679505157"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679505157"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#EndOfBlock"><span class="hs-identifier hs-type">EndOfBlock</span></a></span></span><span>
+</span><span id="line-584"></span><span id="yield"><span class="annot"><span class="annottext">yield :: [Value] -&gt; m EndOfBlock
+</span><a href="MLIR.AST.Dialect.Generated.SCF.html#yield"><span class="hs-identifier hs-var hs-var">yield</span></a></span></span><span>  </span><span id="local-6989586621679505155"><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505155"><span class="hs-identifier hs-var">results</span></a></span></span><span>   </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-585"></span><span>  </span><span class="annot"><span class="annottext">m [Value] -&gt; m ()
+forall (f :: * -&gt; *) a. Functor f =&gt; f a -&gt; f ()
+</span><span class="hs-identifier hs-var">Control.Monad.void</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation -&gt; m [Value]
+forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
+</span><a href="MLIR.AST.Builder.html#emitOp"><span class="hs-identifier hs-var">AST.emitOp</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation :: forall operand.
+Name
+-&gt; Location
+-&gt; ResultTypes
+-&gt; [operand]
+-&gt; [Region]
+-&gt; [Name]
+-&gt; Map Name Attribute
+-&gt; AbstractOperation operand
+</span><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span>
+</span><span id="line-586"></span><span>          </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opName :: Name
+</span><a href="MLIR.AST.html#opName"><span class="hs-identifier hs-var">opName</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Name
+</span><span class="hs-string">&quot;scf.yield&quot;</span></span><span>
+</span><span id="line-587"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opLocation :: Location
+</span><a href="MLIR.AST.html#opLocation"><span class="hs-identifier hs-var">opLocation</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Location
+</span><a href="MLIR.AST.html#UnknownLocation"><span class="hs-identifier hs-var">UnknownLocation</span></a></span><span>
+</span><span id="line-588"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opResultTypes :: ResultTypes
+</span><a href="MLIR.AST.html#opResultTypes"><span class="hs-identifier hs-var">opResultTypes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Type] -&gt; ResultTypes
+</span><a href="MLIR.AST.html#Explicit"><span class="hs-identifier hs-var">Explicit</span></a></span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-589"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [Name]
+</span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[Value] -&gt; [Name]
+</span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">AST.operands</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679505155"><span class="hs-identifier hs-var">results</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-590"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-591"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opSuccessors :: [Name]
+</span><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">[</span><span class="hs-special">]</span><span>
+</span><span id="line-592"></span><span>          </span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opAttributes :: Map Name Attribute
+</span><a href="MLIR.AST.html#opAttributes"><span class="hs-identifier hs-var">opAttributes</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Map Name Attribute
+</span><a href="MLIR.AST.html#NoAttrs"><span class="hs-identifier hs-var">NoAttrs</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-593"></span><span>          </span><span class="hs-special">}</span><span class="hs-special">)</span><span class="hs-special">)</span><span>
+</span><span id="line-594"></span><span>  </span><span class="annot"><span class="annottext">m EndOfBlock
+forall (m :: * -&gt; *). Monad m =&gt; m EndOfBlock
+</span><a href="MLIR.AST.Builder.html#terminateBlock"><span class="hs-identifier hs-var">AST.terminateBlock</span></a></span><span>
+</span><span id="line-595"></span></pre></body></html>
