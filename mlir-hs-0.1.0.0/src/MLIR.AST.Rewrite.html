@@ -40,56 +40,56 @@
 </span><span id="line-40"></span><span class="hs-keyword">type</span><span> </span><span id="BlockAndValueMapping"><span class="annot"><a href="MLIR.AST.Rewrite.html#BlockAndValueMapping"><span class="hs-identifier hs-var">BlockAndValueMapping</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.Rewrite.html#ValueMapping"><span class="hs-identifier hs-type">ValueMapping</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#BlockMapping"><span class="hs-identifier hs-type">BlockMapping</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-41"></span><span>
 </span><span id="line-42"></span><span class="hs-keyword">type</span><span> </span><span id="SubstT"><span class="annot"><a href="MLIR.AST.Rewrite.html#SubstT"><span class="hs-identifier hs-var">SubstT</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="hs-identifier hs-type">ReaderT</span></span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#BlockAndValueMapping"><span class="hs-identifier hs-type">BlockAndValueMapping</span></a></span><span>
-</span><span id="line-43"></span><span class="hs-keyword">type</span><span> </span><span id="RewriteT"><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteT"><span class="hs-identifier hs-var">RewriteT</span></a></span></span><span> </span><span id="local-6989586621679520054"><span class="annot"><a href="#local-6989586621679520054"><span class="hs-identifier hs-type">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#SubstT"><span class="hs-identifier hs-type">SubstT</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.Builder.html#NameSupplyT"><span class="hs-identifier hs-type">NameSupplyT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520054"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span>
-</span><span id="line-44"></span><span class="hs-keyword">type</span><span> </span><span id="RewriteBuilderT"><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteBuilderT"><span class="hs-identifier hs-var">RewriteBuilderT</span></a></span></span><span> </span><span id="local-6989586621679520053"><span class="annot"><a href="#local-6989586621679520053"><span class="hs-identifier hs-type">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#BlockBuilderT"><span class="hs-identifier hs-type">BlockBuilderT</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteT"><span class="hs-identifier hs-type">RewriteT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520053"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-43"></span><span class="hs-keyword">type</span><span> </span><span id="RewriteT"><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteT"><span class="hs-identifier hs-var">RewriteT</span></a></span></span><span> </span><span id="local-6989586621679520273"><span class="annot"><a href="#local-6989586621679520273"><span class="hs-identifier hs-type">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#SubstT"><span class="hs-identifier hs-type">SubstT</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.Builder.html#NameSupplyT"><span class="hs-identifier hs-type">NameSupplyT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520273"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span>
+</span><span id="line-44"></span><span class="hs-keyword">type</span><span> </span><span id="RewriteBuilderT"><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteBuilderT"><span class="hs-identifier hs-var">RewriteBuilderT</span></a></span></span><span> </span><span id="local-6989586621679520272"><span class="annot"><a href="#local-6989586621679520272"><span class="hs-identifier hs-type">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#BlockBuilderT"><span class="hs-identifier hs-type">BlockBuilderT</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteT"><span class="hs-identifier hs-type">RewriteT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520272"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-45"></span><span>
 </span><span id="line-46"></span><span class="hs-keyword">data</span><span> </span><span id="RewriteResult"><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteResult"><span class="hs-identifier hs-var">RewriteResult</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span id="Replace"><span class="annot"><a href="MLIR.AST.Rewrite.html#Replace"><span class="hs-identifier hs-var">Replace</span></a></span></span><span> </span><span class="hs-special">[</span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span class="hs-special">]</span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Skip"><span class="annot"><a href="MLIR.AST.Rewrite.html#Skip"><span class="hs-identifier hs-var">Skip</span></a></span></span><span> </span><span class="hs-glyph">|</span><span> </span><span id="Traverse"><span class="annot"><a href="MLIR.AST.Rewrite.html#Traverse"><span class="hs-identifier hs-var">Traverse</span></a></span></span><span>
 </span><span id="line-47"></span><span>
 </span><span id="line-48"></span><span class="hs-keyword">pattern</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#ReplaceOne"><span class="hs-identifier hs-type">ReplaceOne</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#Value"><span class="hs-identifier hs-type">Value</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteResult"><span class="hs-identifier hs-type">RewriteResult</span></a></span><span>
 </span><span id="line-49"></span><span class="hs-keyword">pattern</span><span> </span><span id="%24bReplaceOne"><span id="%24mReplaceOne"><span id="ReplaceOne"><span class="annot"><span class="annottext">$bReplaceOne :: Value -&gt; RewriteResult
 $mReplaceOne :: forall {r}. RewriteResult -&gt; (Value -&gt; r) -&gt; (Void# -&gt; r) -&gt; r
-</span><a href="MLIR.AST.Rewrite.html#%24bReplaceOne"><span class="hs-identifier hs-var hs-var hs-var">ReplaceOne</span></a></span></span></span></span><span> </span><span class="annot"><a href="#local-6989586621679520047"><span class="hs-identifier hs-type">val</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#Replace"><span class="hs-identifier hs-type">Replace</span></a></span><span> </span><span class="hs-special">[</span><span id="local-6989586621679520047"><span class="annot"><a href="#local-6989586621679520047"><span class="hs-identifier hs-var">val</span></a></span></span><span class="hs-special">]</span><span>
+</span><a href="MLIR.AST.Rewrite.html#%24bReplaceOne"><span class="hs-identifier hs-var hs-var hs-var">ReplaceOne</span></a></span></span></span></span><span> </span><span class="annot"><a href="#local-6989586621679520266"><span class="hs-identifier hs-type">val</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#Replace"><span class="hs-identifier hs-type">Replace</span></a></span><span> </span><span class="hs-special">[</span><span id="local-6989586621679520266"><span class="annot"><a href="#local-6989586621679520266"><span class="hs-identifier hs-var">val</span></a></span></span><span class="hs-special">]</span><span>
 </span><span id="line-50"></span><span>
-</span><span id="line-51"></span><span class="hs-keyword">type</span><span> </span><span id="OpRewriteM"><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewriteM"><span class="hs-identifier hs-var">OpRewriteM</span></a></span></span><span> </span><span id="local-6989586621679520046"><span class="annot"><a href="#local-6989586621679520046"><span class="hs-identifier hs-type">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteBuilderT"><span class="hs-identifier hs-type">RewriteBuilderT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520046"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteResult"><span class="hs-identifier hs-type">RewriteResult</span></a></span><span>
+</span><span id="line-51"></span><span class="hs-keyword">type</span><span> </span><span id="OpRewriteM"><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewriteM"><span class="hs-identifier hs-var">OpRewriteM</span></a></span></span><span> </span><span id="local-6989586621679520265"><span class="annot"><a href="#local-6989586621679520265"><span class="hs-identifier hs-type">m</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteBuilderT"><span class="hs-identifier hs-type">RewriteBuilderT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520265"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteResult"><span class="hs-identifier hs-type">RewriteResult</span></a></span><span>
 </span><span id="line-52"></span><span class="hs-keyword">type</span><span> </span><span id="OpRewrite"><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewrite"><span class="hs-identifier hs-var">OpRewrite</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewriteM"><span class="hs-identifier hs-type">OpRewriteM</span></a></span><span> </span><span class="annot"><span class="hs-identifier hs-type">Identity</span></span><span>
 </span><span id="line-53"></span><span>
-</span><span id="line-54"></span><span id="local-6989586621679520194"><span id="local-6989586621679520197"><span class="annot"><a href="MLIR.AST.Rewrite.html#extendValueMap"><span class="hs-identifier hs-type">extendValueMap</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadReader</span></span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#BlockAndValueMapping"><span class="hs-identifier hs-type">BlockAndValueMapping</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520197"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#ValueMapping"><span class="hs-identifier hs-type">ValueMapping</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520197"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520194"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520197"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520194"><span class="hs-identifier hs-type">a</span></a></span></span></span><span>
+</span><span id="line-54"></span><span id="local-6989586621679520413"><span id="local-6989586621679520416"><span class="annot"><a href="MLIR.AST.Rewrite.html#extendValueMap"><span class="hs-identifier hs-type">extendValueMap</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadReader</span></span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#BlockAndValueMapping"><span class="hs-identifier hs-type">BlockAndValueMapping</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520416"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#ValueMapping"><span class="hs-identifier hs-type">ValueMapping</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520416"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520413"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520416"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520413"><span class="hs-identifier hs-type">a</span></a></span></span></span><span>
 </span><span id="line-55"></span><span id="extendValueMap"><span class="annot"><span class="annottext">extendValueMap :: forall (m :: * -&gt; *) a.
 MonadReader BlockAndValueMapping m =&gt;
 ValueMapping -&gt; m a -&gt; m a
-</span><a href="MLIR.AST.Rewrite.html#extendValueMap"><span class="hs-identifier hs-var hs-var">extendValueMap</span></a></span></span><span> </span><span id="local-6989586621679520038"><span class="annot"><span class="annottext">ValueMapping
-</span><a href="#local-6989586621679520038"><span class="hs-identifier hs-var">upd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(BlockAndValueMapping -&gt; BlockAndValueMapping) -&gt; m a -&gt; m a
+</span><a href="MLIR.AST.Rewrite.html#extendValueMap"><span class="hs-identifier hs-var hs-var">extendValueMap</span></a></span></span><span> </span><span id="local-6989586621679520257"><span class="annot"><span class="annottext">ValueMapping
+</span><a href="#local-6989586621679520257"><span class="hs-identifier hs-var">upd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(BlockAndValueMapping -&gt; BlockAndValueMapping) -&gt; m a -&gt; m a
 forall r (m :: * -&gt; *) a. MonadReader r m =&gt; (r -&gt; r) -&gt; m a -&gt; m a
-</span><span class="hs-identifier hs-var">local</span></span><span> </span><span class="hs-glyph">\</span><span class="hs-special">(</span><span id="local-6989586621679520036"><span class="annot"><span class="annottext">ValueMapping
-</span><a href="#local-6989586621679520036"><span class="hs-identifier hs-var">vm</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679520035"><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679520035"><span class="hs-identifier hs-var">bm</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ValueMapping
-</span><a href="#local-6989586621679520036"><span class="hs-identifier hs-var">vm</span></a></span><span> </span><span class="annot"><span class="annottext">ValueMapping -&gt; ValueMapping -&gt; ValueMapping
+</span><span class="hs-identifier hs-var">local</span></span><span> </span><span class="hs-glyph">\</span><span class="hs-special">(</span><span id="local-6989586621679520255"><span class="annot"><span class="annottext">ValueMapping
+</span><a href="#local-6989586621679520255"><span class="hs-identifier hs-var">vm</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679520254"><span class="annot"><span class="annottext">BlockMapping
+</span><a href="#local-6989586621679520254"><span class="hs-identifier hs-var">bm</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ValueMapping
+</span><a href="#local-6989586621679520255"><span class="hs-identifier hs-var">vm</span></a></span><span> </span><span class="annot"><span class="annottext">ValueMapping -&gt; ValueMapping -&gt; ValueMapping
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">ValueMapping
-</span><a href="#local-6989586621679520038"><span class="hs-identifier hs-var">upd</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679520035"><span class="hs-identifier hs-var">bm</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679520257"><span class="hs-identifier hs-var">upd</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">BlockMapping
+</span><a href="#local-6989586621679520254"><span class="hs-identifier hs-var">bm</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-56"></span><span>
-</span><span id="line-57"></span><span id="local-6989586621679520181"><span id="local-6989586621679520182"><span class="annot"><a href="MLIR.AST.Rewrite.html#extendBlockMap"><span class="hs-identifier hs-type">extendBlockMap</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadReader</span></span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#BlockAndValueMapping"><span class="hs-identifier hs-type">BlockAndValueMapping</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520182"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#BlockMapping"><span class="hs-identifier hs-type">BlockMapping</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520182"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520181"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520182"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520181"><span class="hs-identifier hs-type">a</span></a></span></span></span><span>
+</span><span id="line-57"></span><span id="local-6989586621679520400"><span id="local-6989586621679520401"><span class="annot"><a href="MLIR.AST.Rewrite.html#extendBlockMap"><span class="hs-identifier hs-type">extendBlockMap</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadReader</span></span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#BlockAndValueMapping"><span class="hs-identifier hs-type">BlockAndValueMapping</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520401"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#BlockMapping"><span class="hs-identifier hs-type">BlockMapping</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520401"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520400"><span class="hs-identifier hs-type">a</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520401"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520400"><span class="hs-identifier hs-type">a</span></a></span></span></span><span>
 </span><span id="line-58"></span><span id="extendBlockMap"><span class="annot"><span class="annottext">extendBlockMap :: forall (m :: * -&gt; *) a.
 MonadReader BlockAndValueMapping m =&gt;
 BlockMapping -&gt; m a -&gt; m a
-</span><a href="MLIR.AST.Rewrite.html#extendBlockMap"><span class="hs-identifier hs-var hs-var">extendBlockMap</span></a></span></span><span> </span><span id="local-6989586621679520029"><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679520029"><span class="hs-identifier hs-var">upd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(BlockAndValueMapping -&gt; BlockAndValueMapping) -&gt; m a -&gt; m a
+</span><a href="MLIR.AST.Rewrite.html#extendBlockMap"><span class="hs-identifier hs-var hs-var">extendBlockMap</span></a></span></span><span> </span><span id="local-6989586621679520248"><span class="annot"><span class="annottext">BlockMapping
+</span><a href="#local-6989586621679520248"><span class="hs-identifier hs-var">upd</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(BlockAndValueMapping -&gt; BlockAndValueMapping) -&gt; m a -&gt; m a
 forall r (m :: * -&gt; *) a. MonadReader r m =&gt; (r -&gt; r) -&gt; m a -&gt; m a
-</span><span class="hs-identifier hs-var">local</span></span><span> </span><span class="hs-glyph">\</span><span class="hs-special">(</span><span id="local-6989586621679520028"><span class="annot"><span class="annottext">ValueMapping
-</span><a href="#local-6989586621679520028"><span class="hs-identifier hs-var">vm</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679520027"><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679520027"><span class="hs-identifier hs-var">bm</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ValueMapping
-</span><a href="#local-6989586621679520028"><span class="hs-identifier hs-var">vm</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679520027"><span class="hs-identifier hs-var">bm</span></a></span><span> </span><span class="annot"><span class="annottext">BlockMapping -&gt; BlockMapping -&gt; BlockMapping
+</span><span class="hs-identifier hs-var">local</span></span><span> </span><span class="hs-glyph">\</span><span class="hs-special">(</span><span id="local-6989586621679520247"><span class="annot"><span class="annottext">ValueMapping
+</span><a href="#local-6989586621679520247"><span class="hs-identifier hs-var">vm</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679520246"><span class="annot"><span class="annottext">BlockMapping
+</span><a href="#local-6989586621679520246"><span class="hs-identifier hs-var">bm</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ValueMapping
+</span><a href="#local-6989586621679520247"><span class="hs-identifier hs-var">vm</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">BlockMapping
+</span><a href="#local-6989586621679520246"><span class="hs-identifier hs-var">bm</span></a></span><span> </span><span class="annot"><span class="annottext">BlockMapping -&gt; BlockMapping -&gt; BlockMapping
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679520029"><span class="hs-identifier hs-var">upd</span></a></span><span class="hs-special">)</span><span>
+</span><a href="#local-6989586621679520248"><span class="hs-identifier hs-var">upd</span></a></span><span class="hs-special">)</span><span>
 </span><span id="line-59"></span><span>
 </span><span id="line-60"></span><span class="annot"><a href="MLIR.AST.Rewrite.html#applyClosedOpRewrite"><span class="hs-identifier hs-type">applyClosedOpRewrite</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewrite"><span class="hs-identifier hs-type">OpRewrite</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span><span>
 </span><span id="line-61"></span><span id="applyClosedOpRewrite"><span class="annot"><span class="annottext">applyClosedOpRewrite :: OpRewrite -&gt; Operation -&gt; Operation
-</span><a href="MLIR.AST.Rewrite.html#applyClosedOpRewrite"><span class="hs-identifier hs-var hs-var">applyClosedOpRewrite</span></a></span></span><span> </span><span id="local-6989586621679520026"><span class="annot"><span class="annottext">OpRewrite
-</span><a href="#local-6989586621679520026"><span class="hs-identifier hs-var">rule</span></a></span></span><span> </span><span id="local-6989586621679520025"><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679520025"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Identity Operation -&gt; Operation
+</span><a href="MLIR.AST.Rewrite.html#applyClosedOpRewrite"><span class="hs-identifier hs-var hs-var">applyClosedOpRewrite</span></a></span></span><span> </span><span id="local-6989586621679520245"><span class="annot"><span class="annottext">OpRewrite
+</span><a href="#local-6989586621679520245"><span class="hs-identifier hs-var">rule</span></a></span></span><span> </span><span id="local-6989586621679520244"><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520244"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">Identity Operation -&gt; Operation
 forall a. Identity a -&gt; a
 </span><span class="hs-identifier hs-var hs-var">runIdentity</span></span><span> </span><span class="annot"><span class="annottext">(Identity Operation -&gt; Operation)
 -&gt; Identity Operation -&gt; Operation
@@ -99,16 +99,16 @@ forall (m :: * -&gt; *).
 MonadFix m =&gt;
 OpRewriteM m -&gt; Operation -&gt; m Operation
 </span><a href="MLIR.AST.Rewrite.html#applyClosedOpRewriteT"><span class="hs-identifier hs-var">applyClosedOpRewriteT</span></a></span><span> </span><span class="annot"><span class="annottext">OpRewrite
-</span><a href="#local-6989586621679520026"><span class="hs-identifier hs-var">rule</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679520025"><span class="hs-identifier hs-var">op</span></a></span><span>
+</span><a href="#local-6989586621679520245"><span class="hs-identifier hs-var">rule</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520244"><span class="hs-identifier hs-var">op</span></a></span><span>
 </span><span id="line-62"></span><span>
-</span><span id="line-63"></span><span id="local-6989586621679520172"><span class="annot"><a href="MLIR.AST.Rewrite.html#applyClosedOpRewriteT"><span class="hs-identifier hs-type">applyClosedOpRewriteT</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFix</span></span><span> </span><span class="annot"><a href="#local-6989586621679520172"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewriteM"><span class="hs-identifier hs-type">OpRewriteM</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520172"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520172"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span></span><span>
+</span><span id="line-63"></span><span id="local-6989586621679520391"><span class="annot"><a href="MLIR.AST.Rewrite.html#applyClosedOpRewriteT"><span class="hs-identifier hs-type">applyClosedOpRewriteT</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFix</span></span><span> </span><span class="annot"><a href="#local-6989586621679520391"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewriteM"><span class="hs-identifier hs-type">OpRewriteM</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520391"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520391"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span></span><span>
 </span><span id="line-64"></span><span id="applyClosedOpRewriteT"><span class="annot"><span class="annottext">applyClosedOpRewriteT :: forall (m :: * -&gt; *).
 MonadFix m =&gt;
 OpRewriteM m -&gt; Operation -&gt; m Operation
-</span><a href="MLIR.AST.Rewrite.html#applyClosedOpRewriteT"><span class="hs-identifier hs-var hs-var">applyClosedOpRewriteT</span></a></span></span><span> </span><span id="local-6989586621679520018"><span class="annot"><span class="annottext">OpRewriteM m
-</span><a href="#local-6989586621679520018"><span class="hs-identifier hs-var">rule</span></a></span></span><span> </span><span id="local-6989586621679520017"><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679520017"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NameSupplyT m Operation -&gt; m Operation
+</span><a href="MLIR.AST.Rewrite.html#applyClosedOpRewriteT"><span class="hs-identifier hs-var hs-var">applyClosedOpRewriteT</span></a></span></span><span> </span><span id="local-6989586621679520237"><span class="annot"><span class="annottext">OpRewriteM m
+</span><a href="#local-6989586621679520237"><span class="hs-identifier hs-var">rule</span></a></span></span><span> </span><span id="local-6989586621679520236"><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520236"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">NameSupplyT m Operation -&gt; m Operation
 forall (m :: * -&gt; *) a. Monad m =&gt; NameSupplyT m a -&gt; m a
 </span><a href="MLIR.AST.Builder.html#evalNameSupplyT"><span class="hs-identifier hs-var">evalNameSupplyT</span></a></span><span> </span><span class="annot"><span class="annottext">(NameSupplyT m Operation -&gt; m Operation)
 -&gt; NameSupplyT m Operation -&gt; m Operation
@@ -118,16 +118,16 @@ forall (m :: * -&gt; *).
 MonadFix m =&gt;
 OpRewriteM m -&gt; Operation -&gt; NameSupplyT m Operation
 </span><a href="MLIR.AST.Rewrite.html#applyOpRewrite"><span class="hs-identifier hs-var">applyOpRewrite</span></a></span><span> </span><span class="annot"><span class="annottext">OpRewriteM m
-</span><a href="#local-6989586621679520018"><span class="hs-identifier hs-var">rule</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679520017"><span class="hs-identifier hs-var">op</span></a></span><span>
+</span><a href="#local-6989586621679520237"><span class="hs-identifier hs-var">rule</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520236"><span class="hs-identifier hs-var">op</span></a></span><span>
 </span><span id="line-65"></span><span>
-</span><span id="line-66"></span><span id="local-6989586621679520165"><span class="annot"><a href="MLIR.AST.Rewrite.html#applyOpRewrite"><span class="hs-identifier hs-type">applyOpRewrite</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFix</span></span><span> </span><span class="annot"><a href="#local-6989586621679520165"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewriteM"><span class="hs-identifier hs-type">OpRewriteM</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520165"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#NameSupplyT"><span class="hs-identifier hs-type">NameSupplyT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520165"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span></span><span>
+</span><span id="line-66"></span><span id="local-6989586621679520384"><span class="annot"><a href="MLIR.AST.Rewrite.html#applyOpRewrite"><span class="hs-identifier hs-type">applyOpRewrite</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFix</span></span><span> </span><span class="annot"><a href="#local-6989586621679520384"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewriteM"><span class="hs-identifier hs-type">OpRewriteM</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520384"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#NameSupplyT"><span class="hs-identifier hs-type">NameSupplyT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520384"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span></span><span>
 </span><span id="line-67"></span><span id="applyOpRewrite"><span class="annot"><span class="annottext">applyOpRewrite :: forall (m :: * -&gt; *).
 MonadFix m =&gt;
 OpRewriteM m -&gt; Operation -&gt; NameSupplyT m Operation
-</span><a href="MLIR.AST.Rewrite.html#applyOpRewrite"><span class="hs-identifier hs-var hs-var">applyOpRewrite</span></a></span></span><span> </span><span id="local-6989586621679519999"><span class="annot"><span class="annottext">OpRewriteM m
-</span><a href="#local-6989586621679519999"><span class="hs-identifier hs-var">rule</span></a></span></span><span> </span><span id="local-6989586621679519998"><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519998"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(ReaderT BlockAndValueMapping (NameSupplyT m) Operation
+</span><a href="MLIR.AST.Rewrite.html#applyOpRewrite"><span class="hs-identifier hs-var hs-var">applyOpRewrite</span></a></span></span><span> </span><span id="local-6989586621679520218"><span class="annot"><span class="annottext">OpRewriteM m
+</span><a href="#local-6989586621679520218"><span class="hs-identifier hs-var">rule</span></a></span></span><span> </span><span id="local-6989586621679520217"><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520217"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(ReaderT BlockAndValueMapping (NameSupplyT m) Operation
  -&gt; BlockAndValueMapping -&gt; NameSupplyT m Operation)
 -&gt; BlockAndValueMapping
 -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) Operation
@@ -146,8 +146,8 @@ forall a. Monoid a =&gt; a
 -&gt; NameSupplyT m Operation
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-68"></span><span>  </span><span id="local-6989586621679519995"><span class="annot"><span class="annottext">[Region]
-</span><a href="#local-6989586621679519995"><span class="hs-identifier hs-var">newRegions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(Region -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) Region)
+</span><span id="line-68"></span><span>  </span><span id="local-6989586621679520214"><span class="annot"><span class="annottext">[Region]
+</span><a href="#local-6989586621679520214"><span class="hs-identifier hs-var">newRegions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(Region -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) Region)
 -&gt; [Region]
 -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) [Region]
 forall (t :: * -&gt; *) (m :: * -&gt; *) a b.
@@ -159,14 +159,14 @@ forall (m :: * -&gt; *).
 MonadFix m =&gt;
 OpRewriteM m -&gt; Region -&gt; RewriteT m Region
 </span><a href="MLIR.AST.Rewrite.html#applyOpRewriteRegion"><span class="hs-identifier hs-var">applyOpRewriteRegion</span></a></span><span> </span><span class="annot"><span class="annottext">OpRewriteM m
-</span><a href="#local-6989586621679519999"><span class="hs-identifier hs-var">rule</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">([Region] -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) [Region])
+</span><a href="#local-6989586621679520218"><span class="hs-identifier hs-var">rule</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">([Region] -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) [Region])
 -&gt; [Region]
 -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) [Region]
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Operation -&gt; [Region]
 forall operand. AbstractOperation operand -&gt; [Region]
 </span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var hs-var">opRegions</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519998"><span class="hs-identifier hs-var">op</span></a></span><span>
+</span><a href="#local-6989586621679520217"><span class="hs-identifier hs-var">op</span></a></span><span>
 </span><span id="line-69"></span><span>  </span><span class="annot"><span class="annottext">Operation -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) Operation
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Operation
@@ -175,17 +175,17 @@ forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) Operation
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519998"><span class="hs-identifier hs-var">op</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="#local-6989586621679520217"><span class="hs-identifier hs-var">op</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
 </span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Region]
-</span><a href="#local-6989586621679519995"><span class="hs-identifier hs-var">newRegions</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679520214"><span class="hs-identifier hs-var">newRegions</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-70"></span><span>
-</span><span id="line-71"></span><span id="local-6989586621679520145"><span class="annot"><a href="MLIR.AST.Rewrite.html#applyOpRewriteRegion"><span class="hs-identifier hs-type">applyOpRewriteRegion</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFix</span></span><span> </span><span class="annot"><a href="#local-6989586621679520145"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewriteM"><span class="hs-identifier hs-type">OpRewriteM</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520145"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Region"><span class="hs-identifier hs-type">Region</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteT"><span class="hs-identifier hs-type">RewriteT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520145"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.html#Region"><span class="hs-identifier hs-type">Region</span></a></span></span><span>
+</span><span id="line-71"></span><span id="local-6989586621679520364"><span class="annot"><a href="MLIR.AST.Rewrite.html#applyOpRewriteRegion"><span class="hs-identifier hs-type">applyOpRewriteRegion</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFix</span></span><span> </span><span class="annot"><a href="#local-6989586621679520364"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewriteM"><span class="hs-identifier hs-type">OpRewriteM</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520364"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Region"><span class="hs-identifier hs-type">Region</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteT"><span class="hs-identifier hs-type">RewriteT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520364"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.html#Region"><span class="hs-identifier hs-type">Region</span></a></span></span><span>
 </span><span id="line-72"></span><span id="applyOpRewriteRegion"><span class="annot"><span class="annottext">applyOpRewriteRegion :: forall (m :: * -&gt; *).
 MonadFix m =&gt;
 OpRewriteM m -&gt; Region -&gt; RewriteT m Region
-</span><a href="MLIR.AST.Rewrite.html#applyOpRewriteRegion"><span class="hs-identifier hs-var hs-var">applyOpRewriteRegion</span></a></span></span><span> </span><span id="local-6989586621679519959"><span class="annot"><span class="annottext">OpRewriteM m
-</span><a href="#local-6989586621679519959"><span class="hs-identifier hs-var">rule</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.html#Region"><span class="hs-identifier hs-type">Region</span></a></span><span> </span><span id="local-6989586621679519957"><span class="annot"><span class="annottext">[Block]
-</span><a href="#local-6989586621679519957"><span class="hs-identifier hs-var">blocks</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a href="MLIR.AST.Rewrite.html#applyOpRewriteRegion"><span class="hs-identifier hs-var hs-var">applyOpRewriteRegion</span></a></span></span><span> </span><span id="local-6989586621679520178"><span class="annot"><span class="annottext">OpRewriteM m
+</span><a href="#local-6989586621679520178"><span class="hs-identifier hs-var">rule</span></a></span></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.html#Region"><span class="hs-identifier hs-type">Region</span></a></span><span> </span><span id="local-6989586621679520176"><span class="annot"><span class="annottext">[Block]
+</span><a href="#local-6989586621679520176"><span class="hs-identifier hs-var">blocks</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-73"></span><span>  </span><span class="annot"><span class="annottext">RegionBuilderT (RewriteT m) () -&gt; RewriteT m Region
 forall (m :: * -&gt; *). Monad m =&gt; RegionBuilderT m () -&gt; m Region
 </span><a href="MLIR.AST.Builder.html#buildRegion"><span class="hs-identifier hs-var">buildRegion</span></a></span><span> </span><span class="annot"><span class="annottext">(RegionBuilderT (RewriteT m) () -&gt; RewriteT m Region)
@@ -202,65 +202,65 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">(BlockMapping -&gt; RegionBuilderT (RewriteT m) BlockMapping)
 -&gt; RegionBuilderT (RewriteT m) BlockMapping
 forall (m :: * -&gt; *) a. MonadFix m =&gt; (a -&gt; m a) -&gt; m a
-</span><span class="hs-identifier hs-var">mfix</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679519954"><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679519954"><span class="hs-identifier hs-var">blockSubst</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">BlockMapping
+</span><span class="hs-identifier hs-var">mfix</span></span><span> </span><span class="hs-glyph">\</span><span id="local-6989586621679520173"><span class="annot"><span class="annottext">BlockMapping
+</span><a href="#local-6989586621679520173"><span class="hs-identifier hs-var">blockSubst</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">BlockMapping
 -&gt; RegionBuilderT (RewriteT m) BlockMapping
 -&gt; RegionBuilderT (RewriteT m) BlockMapping
 forall (m :: * -&gt; *) a.
 MonadReader BlockAndValueMapping m =&gt;
 BlockMapping -&gt; m a -&gt; m a
 </span><a href="MLIR.AST.Rewrite.html#extendBlockMap"><span class="hs-identifier hs-var">extendBlockMap</span></a></span><span> </span><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679519954"><span class="hs-identifier hs-var">blockSubst</span></a></span><span> </span><span class="annot"><span class="annottext">(RegionBuilderT (RewriteT m) BlockMapping
+</span><a href="#local-6989586621679520173"><span class="hs-identifier hs-var">blockSubst</span></a></span><span> </span><span class="annot"><span class="annottext">(RegionBuilderT (RewriteT m) BlockMapping
  -&gt; RegionBuilderT (RewriteT m) BlockMapping)
 -&gt; RegionBuilderT (RewriteT m) BlockMapping
 -&gt; RegionBuilderT (RewriteT m) BlockMapping
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">BlockMapping -&gt; [Block] -&gt; RegionBuilderT (RewriteT m) BlockMapping
-</span><a href="#local-6989586621679519953"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="annot"><span class="annottext">BlockMapping
+</span><a href="#local-6989586621679520172"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="annot"><span class="annottext">BlockMapping
 forall a. Monoid a =&gt; a
 </span><span class="hs-identifier hs-var">mempty</span></span><span> </span><span class="annot"><span class="annottext">[Block]
-</span><a href="#local-6989586621679519957"><span class="hs-identifier hs-var">blocks</span></a></span><span>
+</span><a href="#local-6989586621679520176"><span class="hs-identifier hs-var">blocks</span></a></span><span>
 </span><span id="line-74"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-75"></span><span>    </span><span id="local-6989586621679519953"><span class="annot"><span class="annottext">go :: BlockMapping -&gt; [Block] -&gt; RegionBuilderT (RewriteT m) BlockMapping
-</span><a href="#local-6989586621679519953"><span class="hs-identifier hs-var hs-var">go</span></a></span></span><span> </span><span id="local-6989586621679519952"><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679519952"><span class="hs-identifier hs-var">blockSubst</span></a></span></span><span> </span><span id="local-6989586621679519951"><span class="annot"><span class="annottext">[Block]
-</span><a href="#local-6989586621679519951"><span class="hs-identifier hs-var">bs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">[Block]
-</span><a href="#local-6989586621679519951"><span class="hs-identifier hs-var">bs</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-75"></span><span>    </span><span id="local-6989586621679520172"><span class="annot"><span class="annottext">go :: BlockMapping -&gt; [Block] -&gt; RegionBuilderT (RewriteT m) BlockMapping
+</span><a href="#local-6989586621679520172"><span class="hs-identifier hs-var hs-var">go</span></a></span></span><span> </span><span id="local-6989586621679520171"><span class="annot"><span class="annottext">BlockMapping
+</span><a href="#local-6989586621679520171"><span class="hs-identifier hs-var">blockSubst</span></a></span></span><span> </span><span id="local-6989586621679520170"><span class="annot"><span class="annottext">[Block]
+</span><a href="#local-6989586621679520170"><span class="hs-identifier hs-var">bs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">[Block]
+</span><a href="#local-6989586621679520170"><span class="hs-identifier hs-var">bs</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-76"></span><span>      </span><span class="hs-special">[</span><span class="hs-special">]</span><span>                                 </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">BlockMapping -&gt; RegionBuilderT (RewriteT m) BlockMapping
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679519952"><span class="hs-identifier hs-var">blockSubst</span></a></span><span>
-</span><span id="line-77"></span><span>      </span><span class="hs-special">(</span><span id="local-6989586621679519950"><span class="annot"><span class="annottext">block :: Block
-</span><a href="#local-6989586621679519950"><span class="hs-identifier hs-var">block</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.html#Block"><span class="hs-identifier hs-type">Block</span></a></span><span> </span><span id="local-6989586621679519948"><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679519948"><span class="hs-identifier hs-var">oldName</span></a></span></span><span> </span><span class="annot"><span class="annottext">[(ByteString, Type)]
+</span><a href="#local-6989586621679520171"><span class="hs-identifier hs-var">blockSubst</span></a></span><span>
+</span><span id="line-77"></span><span>      </span><span class="hs-special">(</span><span id="local-6989586621679520169"><span class="annot"><span class="annottext">block :: Block
+</span><a href="#local-6989586621679520169"><span class="hs-identifier hs-var">block</span></a></span></span><span class="hs-glyph">@</span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.html#Block"><span class="hs-identifier hs-type">Block</span></a></span><span> </span><span id="local-6989586621679520167"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679520167"><span class="hs-identifier hs-var">oldName</span></a></span></span><span> </span><span class="annot"><span class="annottext">[(ByteString, Type)]
 </span><span class="hs-identifier">_</span></span><span> </span><span class="annot"><span class="annottext">[Binding]
-</span><span class="hs-identifier">_</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679519947"><span class="annot"><span class="annottext">[Block]
-</span><a href="#local-6989586621679519947"><span class="hs-identifier hs-var">rest</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-78"></span><span>        </span><span id="local-6989586621679519946"><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679519946"><span class="hs-identifier hs-var">newName</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">OpRewriteM m -&gt; Block -&gt; RegionBuilderT (RewriteT m) ByteString
+</span><span class="hs-identifier">_</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679520166"><span class="annot"><span class="annottext">[Block]
+</span><a href="#local-6989586621679520166"><span class="hs-identifier hs-var">rest</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-78"></span><span>        </span><span id="local-6989586621679520165"><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679520165"><span class="hs-identifier hs-var">newName</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">OpRewriteM m -&gt; Block -&gt; RegionBuilderT (RewriteT m) ByteString
 forall (m :: * -&gt; *).
 MonadFix m =&gt;
 OpRewriteM m -&gt; Block -&gt; RegionBuilderT (RewriteT m) ByteString
 </span><a href="MLIR.AST.Rewrite.html#applyOpRewriteBlock"><span class="hs-identifier hs-var">applyOpRewriteBlock</span></a></span><span> </span><span class="annot"><span class="annottext">OpRewriteM m
-</span><a href="#local-6989586621679519959"><span class="hs-identifier hs-var">rule</span></a></span><span> </span><span class="annot"><span class="annottext">Block
-</span><a href="#local-6989586621679519950"><span class="hs-identifier hs-var">block</span></a></span><span>
+</span><a href="#local-6989586621679520178"><span class="hs-identifier hs-var">rule</span></a></span><span> </span><span class="annot"><span class="annottext">Block
+</span><a href="#local-6989586621679520169"><span class="hs-identifier hs-var">block</span></a></span><span>
 </span><span id="line-79"></span><span>        </span><span class="annot"><span class="annottext">BlockMapping -&gt; [Block] -&gt; RegionBuilderT (RewriteT m) BlockMapping
-</span><a href="#local-6989586621679519953"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679519952"><span class="hs-identifier hs-var">blockSubst</span></a></span><span> </span><span class="annot"><span class="annottext">BlockMapping -&gt; BlockMapping -&gt; BlockMapping
+</span><a href="#local-6989586621679520172"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">BlockMapping
+</span><a href="#local-6989586621679520171"><span class="hs-identifier hs-var">blockSubst</span></a></span><span> </span><span class="annot"><span class="annottext">BlockMapping -&gt; BlockMapping -&gt; BlockMapping
 forall a. Semigroup a =&gt; a -&gt; a -&gt; a
 </span><span class="hs-operator hs-var">&lt;&gt;</span></span><span> </span><span class="annot"><span class="annottext">ByteString -&gt; ByteString -&gt; BlockMapping
 forall k a. k -&gt; a -&gt; Map k a
 </span><span class="hs-identifier hs-var">M.singleton</span></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679519948"><span class="hs-identifier hs-var">oldName</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
-</span><a href="#local-6989586621679519946"><span class="hs-identifier hs-var">newName</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Block]
-</span><a href="#local-6989586621679519947"><span class="hs-identifier hs-var">rest</span></a></span><span>
+</span><a href="#local-6989586621679520167"><span class="hs-identifier hs-var">oldName</span></a></span><span> </span><span class="annot"><span class="annottext">ByteString
+</span><a href="#local-6989586621679520165"><span class="hs-identifier hs-var">newName</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">[Block]
+</span><a href="#local-6989586621679520166"><span class="hs-identifier hs-var">rest</span></a></span><span>
 </span><span id="line-80"></span><span>
-</span><span id="line-81"></span><span id="local-6989586621679520116"><span class="annot"><a href="MLIR.AST.Rewrite.html#applyOpRewriteBlock"><span class="hs-identifier hs-type">applyOpRewriteBlock</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFix</span></span><span> </span><span class="annot"><a href="#local-6989586621679520116"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewriteM"><span class="hs-identifier hs-type">OpRewriteM</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520116"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Block"><span class="hs-identifier hs-type">Block</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#RegionBuilderT"><span class="hs-identifier hs-type">RegionBuilderT</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteT"><span class="hs-identifier hs-type">RewriteT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520116"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#BlockName"><span class="hs-identifier hs-type">BlockName</span></a></span></span><span>
+</span><span id="line-81"></span><span id="local-6989586621679520335"><span class="annot"><a href="MLIR.AST.Rewrite.html#applyOpRewriteBlock"><span class="hs-identifier hs-type">applyOpRewriteBlock</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadFix</span></span><span> </span><span class="annot"><a href="#local-6989586621679520335"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#OpRewriteM"><span class="hs-identifier hs-type">OpRewriteM</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520335"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Block"><span class="hs-identifier hs-type">Block</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#RegionBuilderT"><span class="hs-identifier hs-type">RegionBuilderT</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.Rewrite.html#RewriteT"><span class="hs-identifier hs-type">RewriteT</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520335"><span class="hs-identifier hs-type">m</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><a href="MLIR.AST.Builder.html#BlockName"><span class="hs-identifier hs-type">BlockName</span></a></span></span><span>
 </span><span id="line-82"></span><span id="applyOpRewriteBlock"><span class="annot"><span class="annottext">applyOpRewriteBlock :: forall (m :: * -&gt; *).
 MonadFix m =&gt;
 OpRewriteM m -&gt; Block -&gt; RegionBuilderT (RewriteT m) ByteString
-</span><a href="MLIR.AST.Rewrite.html#applyOpRewriteBlock"><span class="hs-identifier hs-var hs-var">applyOpRewriteBlock</span></a></span></span><span> </span><span id="local-6989586621679519895"><span class="annot"><span class="annottext">OpRewriteM m
-</span><a href="#local-6989586621679519895"><span class="hs-identifier hs-var">rule</span></a></span></span><span> </span><span class="annot"><a href="MLIR.AST.html#Block"><span class="hs-identifier hs-type">Block</span></a></span><span class="hs-special">{</span><span id="local-6989586621679519892"><span id="local-6989586621679519893"><span id="local-6989586621679519894"><span class="annot"><span class="annottext">[(ByteString, Type)]
+</span><a href="MLIR.AST.Rewrite.html#applyOpRewriteBlock"><span class="hs-identifier hs-var hs-var">applyOpRewriteBlock</span></a></span></span><span> </span><span id="local-6989586621679520114"><span class="annot"><span class="annottext">OpRewriteM m
+</span><a href="#local-6989586621679520114"><span class="hs-identifier hs-var">rule</span></a></span></span><span> </span><span class="annot"><a href="MLIR.AST.html#Block"><span class="hs-identifier hs-type">Block</span></a></span><span class="hs-special">{</span><span id="local-6989586621679520111"><span id="local-6989586621679520112"><span id="local-6989586621679520113"><span class="annot"><span class="annottext">[(ByteString, Type)]
 [Binding]
 ByteString
 blockBody :: Block -&gt; [Binding]
@@ -287,14 +287,14 @@ BlockBuilderT m EndOfBlock -&gt; RegionBuilderT m ByteString
      (ReaderT BlockAndValueMapping (NameSupplyT m)) ByteString
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-84"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679519887"><span class="annot"><span class="annottext">[ByteString]
-</span><a href="#local-6989586621679519887"><span class="hs-identifier hs-var">blockArgNames</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679519886"><span class="annot"><span class="annottext">[Type]
-</span><a href="#local-6989586621679519886"><span class="hs-identifier hs-var">blockArgTypes</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[(ByteString, Type)] -&gt; ([ByteString], [Type])
+</span><span id="line-84"></span><span>    </span><span class="hs-keyword">let</span><span> </span><span class="hs-special">(</span><span id="local-6989586621679520106"><span class="annot"><span class="annottext">[ByteString]
+</span><a href="#local-6989586621679520106"><span class="hs-identifier hs-var">blockArgNames</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679520105"><span class="annot"><span class="annottext">[Type]
+</span><a href="#local-6989586621679520105"><span class="hs-identifier hs-var">blockArgTypes</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[(ByteString, Type)] -&gt; ([ByteString], [Type])
 forall a b. [(a, b)] -&gt; ([a], [b])
 </span><span class="hs-identifier hs-var">unzip</span></span><span> </span><span class="annot"><span class="annottext">[(ByteString, Type)]
-</span><a href="#local-6989586621679519893"><span class="hs-identifier hs-var">blockArgs</span></a></span><span>
-</span><span id="line-85"></span><span>    </span><span id="local-6989586621679519884"><span class="annot"><span class="annottext">[Value]
-</span><a href="#local-6989586621679519884"><span class="hs-identifier hs-var">newBlockArgs</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(Type
+</span><a href="#local-6989586621679520112"><span class="hs-identifier hs-var">blockArgs</span></a></span><span>
+</span><span id="line-85"></span><span>    </span><span id="local-6989586621679520103"><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679520103"><span class="hs-identifier hs-var">newBlockArgs</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">(Type
  -&gt; BlockBuilderT
       (ReaderT BlockAndValueMapping (NameSupplyT m)) Value)
 -&gt; [Type]
@@ -308,7 +308,7 @@ forall (t :: * -&gt; *) (m :: * -&gt; *) a b.
      (ReaderT BlockAndValueMapping (NameSupplyT m)) Value
 forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Type -&gt; m Value
 </span><a href="MLIR.AST.Builder.html#blockArgument"><span class="hs-identifier hs-var">blockArgument</span></a></span><span> </span><span class="annot"><span class="annottext">[Type]
-</span><a href="#local-6989586621679519886"><span class="hs-identifier hs-var">blockArgTypes</span></a></span><span>
+</span><a href="#local-6989586621679520105"><span class="hs-identifier hs-var">blockArgTypes</span></a></span><span>
 </span><span id="line-86"></span><span>    </span><span class="annot"><span class="annottext">ValueMapping
 -&gt; BlockBuilderT
      (ReaderT BlockAndValueMapping (NameSupplyT m)) EndOfBlock
@@ -325,8 +325,8 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[ByteString] -&gt; [Value] -&gt; [(ByteString, Value)]
 forall a b. [a] -&gt; [b] -&gt; [(a, b)]
 </span><span class="hs-identifier hs-var">zip</span></span><span> </span><span class="annot"><span class="annottext">[ByteString]
-</span><a href="#local-6989586621679519887"><span class="hs-identifier hs-var">blockArgNames</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
-</span><a href="#local-6989586621679519884"><span class="hs-identifier hs-var">newBlockArgs</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(BlockBuilderT
+</span><a href="#local-6989586621679520106"><span class="hs-identifier hs-var">blockArgNames</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679520103"><span class="hs-identifier hs-var">newBlockArgs</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(BlockBuilderT
    (ReaderT BlockAndValueMapping (NameSupplyT m)) EndOfBlock
  -&gt; BlockBuilderT
       (ReaderT BlockAndValueMapping (NameSupplyT m)) EndOfBlock)
@@ -338,41 +338,41 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[Binding]
 -&gt; BlockBuilderT
      (ReaderT BlockAndValueMapping (NameSupplyT m)) EndOfBlock
-</span><a href="#local-6989586621679519881"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="annot"><span class="annottext">[Binding]
-</span><a href="#local-6989586621679519892"><span class="hs-identifier hs-var">blockBody</span></a></span><span>
+</span><a href="#local-6989586621679520100"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="annot"><span class="annottext">[Binding]
+</span><a href="#local-6989586621679520111"><span class="hs-identifier hs-var">blockBody</span></a></span><span>
 </span><span id="line-87"></span><span>  </span><span class="hs-keyword">where</span><span>
-</span><span id="line-88"></span><span>    </span><span id="local-6989586621679519881"><span class="annot"><span class="annottext">go :: [Binding]
+</span><span id="line-88"></span><span>    </span><span id="local-6989586621679520100"><span class="annot"><span class="annottext">go :: [Binding]
 -&gt; BlockBuilderT
      (ReaderT BlockAndValueMapping (NameSupplyT m)) EndOfBlock
-</span><a href="#local-6989586621679519881"><span class="hs-identifier hs-var hs-var">go</span></a></span></span><span> </span><span id="local-6989586621679519880"><span class="annot"><span class="annottext">[Binding]
-</span><a href="#local-6989586621679519880"><span class="hs-identifier hs-var">bs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">[Binding]
-</span><a href="#local-6989586621679519880"><span class="hs-identifier hs-var">bs</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><a href="#local-6989586621679520100"><span class="hs-identifier hs-var hs-var">go</span></a></span></span><span> </span><span id="local-6989586621679520099"><span class="annot"><span class="annottext">[Binding]
+</span><a href="#local-6989586621679520099"><span class="hs-identifier hs-var">bs</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">[Binding]
+</span><a href="#local-6989586621679520099"><span class="hs-identifier hs-var">bs</span></a></span><span> </span><span class="hs-keyword">of</span><span>
 </span><span id="line-89"></span><span>      </span><span class="hs-special">[</span><span class="hs-special">]</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">BlockBuilderT
   (ReaderT BlockAndValueMapping (NameSupplyT m)) EndOfBlock
 forall (m :: * -&gt; *). Monad m =&gt; m EndOfBlock
 </span><a href="MLIR.AST.Builder.html#terminateBlock"><span class="hs-identifier hs-var">terminateBlock</span></a></span><span>
-</span><span id="line-90"></span><span>      </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.html#Bind"><span class="hs-identifier hs-type">Bind</span></a></span><span> </span><span id="local-6989586621679519877"><span class="annot"><span class="annottext">[ByteString]
-</span><a href="#local-6989586621679519877"><span class="hs-identifier hs-var">names</span></a></span></span><span> </span><span id="local-6989586621679519876"><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519876"><span class="hs-identifier hs-var">astOp</span></a></span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679519875"><span class="annot"><span class="annottext">[Binding]
-</span><a href="#local-6989586621679519875"><span class="hs-identifier hs-var">rest</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-91"></span><span>        </span><span id="local-6989586621679519874"><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519874"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Operation
+</span><span id="line-90"></span><span>      </span><span class="hs-special">(</span><span class="hs-special">(</span><span class="annot"><a href="MLIR.AST.html#Bind"><span class="hs-identifier hs-type">Bind</span></a></span><span> </span><span id="local-6989586621679520096"><span class="annot"><span class="annottext">[ByteString]
+</span><a href="#local-6989586621679520096"><span class="hs-identifier hs-var">names</span></a></span></span><span> </span><span id="local-6989586621679520095"><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520095"><span class="hs-identifier hs-var">astOp</span></a></span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="hs-glyph hs-type">:</span></span><span> </span><span id="local-6989586621679520094"><span class="annot"><span class="annottext">[Binding]
+</span><a href="#local-6989586621679520094"><span class="hs-identifier hs-var">rest</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-91"></span><span>        </span><span id="local-6989586621679520093"><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520093"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">Operation
 -&gt; BlockBuilderT
      (ReaderT BlockAndValueMapping (NameSupplyT m)) Operation
 forall (m :: * -&gt; *).
 MonadReader BlockAndValueMapping m =&gt;
 Operation -&gt; m Operation
 </span><a href="MLIR.AST.Rewrite.html#substOp"><span class="hs-identifier hs-var">substOp</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519876"><span class="hs-identifier hs-var">astOp</span></a></span><span>
-</span><span id="line-92"></span><span>        </span><span id="local-6989586621679519872"><span class="annot"><span class="annottext">RewriteResult
-</span><a href="#local-6989586621679519872"><span class="hs-identifier hs-var">answer</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">OpRewriteM m
-</span><a href="#local-6989586621679519895"><span class="hs-identifier hs-var">rule</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519874"><span class="hs-identifier hs-var">op</span></a></span><span>
-</span><span id="line-93"></span><span>        </span><span id="local-6989586621679519871"><span class="annot"><span class="annottext">[Value]
-</span><a href="#local-6989586621679519871"><span class="hs-identifier hs-var">newValues</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">RewriteResult
-</span><a href="#local-6989586621679519872"><span class="hs-identifier hs-var">answer</span></a></span><span> </span><span class="hs-keyword">of</span><span>
-</span><span id="line-94"></span><span>          </span><span class="annot"><a href="MLIR.AST.Rewrite.html#Replace"><span class="hs-identifier hs-type">Replace</span></a></span><span> </span><span id="local-6989586621679519870"><span class="annot"><span class="annottext">[Value]
-</span><a href="#local-6989586621679519870"><span class="hs-identifier hs-var">newValues</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a href="#local-6989586621679520095"><span class="hs-identifier hs-var">astOp</span></a></span><span>
+</span><span id="line-92"></span><span>        </span><span id="local-6989586621679520091"><span class="annot"><span class="annottext">RewriteResult
+</span><a href="#local-6989586621679520091"><span class="hs-identifier hs-var">answer</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">OpRewriteM m
+</span><a href="#local-6989586621679520114"><span class="hs-identifier hs-var">rule</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520093"><span class="hs-identifier hs-var">op</span></a></span><span>
+</span><span id="line-93"></span><span>        </span><span id="local-6989586621679520090"><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679520090"><span class="hs-identifier hs-var">newValues</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="hs-keyword">case</span><span> </span><span class="annot"><span class="annottext">RewriteResult
+</span><a href="#local-6989586621679520091"><span class="hs-identifier hs-var">answer</span></a></span><span> </span><span class="hs-keyword">of</span><span>
+</span><span id="line-94"></span><span>          </span><span class="annot"><a href="MLIR.AST.Rewrite.html#Replace"><span class="hs-identifier hs-type">Replace</span></a></span><span> </span><span id="local-6989586621679520089"><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679520089"><span class="hs-identifier hs-var">newValues</span></a></span></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-95"></span><span>            </span><span class="annot"><span class="annottext">Bool
 -&gt; BlockBuilderT (ReaderT BlockAndValueMapping (NameSupplyT m)) ()
 -&gt; BlockBuilderT (ReaderT BlockAndValueMapping (NameSupplyT m)) ()
@@ -380,12 +380,12 @@ forall (f :: * -&gt; *). Applicative f =&gt; Bool -&gt; f () -&gt; f ()
 </span><span class="hs-identifier hs-var">unless</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">[ByteString] -&gt; Int
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
 </span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">[ByteString]
-</span><a href="#local-6989586621679519877"><span class="hs-identifier hs-var">names</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
+</span><a href="#local-6989586621679520096"><span class="hs-identifier hs-var">names</span></a></span><span> </span><span class="annot"><span class="annottext">Int -&gt; Int -&gt; Bool
 forall a. Eq a =&gt; a -&gt; a -&gt; Bool
 </span><span class="hs-operator hs-var">==</span></span><span> </span><span class="annot"><span class="annottext">[Value] -&gt; Int
 forall (t :: * -&gt; *) a. Foldable t =&gt; t a -&gt; Int
 </span><span class="hs-identifier hs-var">length</span></span><span> </span><span class="annot"><span class="annottext">[Value]
-</span><a href="#local-6989586621679519870"><span class="hs-identifier hs-var">newValues</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(BlockBuilderT (ReaderT BlockAndValueMapping (NameSupplyT m)) ()
+</span><a href="#local-6989586621679520089"><span class="hs-identifier hs-var">newValues</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(BlockBuilderT (ReaderT BlockAndValueMapping (NameSupplyT m)) ()
  -&gt; BlockBuilderT (ReaderT BlockAndValueMapping (NameSupplyT m)) ())
 -&gt; BlockBuilderT (ReaderT BlockAndValueMapping (NameSupplyT m)) ()
 -&gt; BlockBuilderT (ReaderT BlockAndValueMapping (NameSupplyT m)) ()
@@ -401,13 +401,13 @@ forall a. HasCallStack =&gt; [Char] -&gt; a
      (ReaderT BlockAndValueMapping (NameSupplyT m)) [Value]
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">[Value]
-</span><a href="#local-6989586621679519870"><span class="hs-identifier hs-var">newValues</span></a></span><span>
+</span><a href="#local-6989586621679520089"><span class="hs-identifier hs-var">newValues</span></a></span><span>
 </span><span id="line-98"></span><span>          </span><span class="annot"><span class="annottext">RewriteResult
 </span><a href="MLIR.AST.Rewrite.html#Traverse"><span class="hs-identifier hs-var">Traverse</span></a></span><span>          </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Operation
 -&gt; BlockBuilderT
      (ReaderT BlockAndValueMapping (NameSupplyT m)) [Value]
-</span><a href="#local-6989586621679519866"><span class="hs-identifier hs-var">opRewriteTraverse</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519874"><span class="hs-identifier hs-var">op</span></a></span><span>
+</span><a href="#local-6989586621679520085"><span class="hs-identifier hs-var">opRewriteTraverse</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520093"><span class="hs-identifier hs-var">op</span></a></span><span>
 </span><span id="line-99"></span><span>          </span><span class="annot"><span class="annottext">RewriteResult
 </span><a href="MLIR.AST.Rewrite.html#Skip"><span class="hs-identifier hs-var">Skip</span></a></span><span>              </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><span class="annottext">Operation
 -&gt; BlockBuilderT
@@ -418,8 +418,8 @@ forall {t :: (* -&gt; *) -&gt; * -&gt; *} {m :: * -&gt; *}.
    (t (ReaderT BlockAndValueMapping (NameSupplyT m)))) =&gt;
 Operation
 -&gt; t (ReaderT BlockAndValueMapping (NameSupplyT m)) [Value]
-</span><a href="#local-6989586621679519865"><span class="hs-identifier hs-var">opRewriteSkip</span></a></span><span>     </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519874"><span class="hs-identifier hs-var">op</span></a></span><span>
+</span><a href="#local-6989586621679520084"><span class="hs-identifier hs-var">opRewriteSkip</span></a></span><span>     </span><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520093"><span class="hs-identifier hs-var">op</span></a></span><span>
 </span><span id="line-100"></span><span>        </span><span class="annot"><span class="annottext">ValueMapping
 -&gt; BlockBuilderT
      (ReaderT BlockAndValueMapping (NameSupplyT m)) EndOfBlock
@@ -436,8 +436,8 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[ByteString] -&gt; [Value] -&gt; [(ByteString, Value)]
 forall a b. [a] -&gt; [b] -&gt; [(a, b)]
 </span><span class="hs-identifier hs-var">zip</span></span><span> </span><span class="annot"><span class="annottext">[ByteString]
-</span><a href="#local-6989586621679519877"><span class="hs-identifier hs-var">names</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
-</span><a href="#local-6989586621679519871"><span class="hs-identifier hs-var">newValues</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(BlockBuilderT
+</span><a href="#local-6989586621679520096"><span class="hs-identifier hs-var">names</span></a></span><span> </span><span class="annot"><span class="annottext">[Value]
+</span><a href="#local-6989586621679520090"><span class="hs-identifier hs-var">newValues</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">(BlockBuilderT
    (ReaderT BlockAndValueMapping (NameSupplyT m)) EndOfBlock
  -&gt; BlockBuilderT
       (ReaderT BlockAndValueMapping (NameSupplyT m)) EndOfBlock)
@@ -449,16 +449,16 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">[Binding]
 -&gt; BlockBuilderT
      (ReaderT BlockAndValueMapping (NameSupplyT m)) EndOfBlock
-</span><a href="#local-6989586621679519881"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="annot"><span class="annottext">[Binding]
-</span><a href="#local-6989586621679519875"><span class="hs-identifier hs-var">rest</span></a></span><span>
+</span><a href="#local-6989586621679520100"><span class="hs-identifier hs-var">go</span></a></span><span> </span><span class="annot"><span class="annottext">[Binding]
+</span><a href="#local-6989586621679520094"><span class="hs-identifier hs-var">rest</span></a></span><span>
 </span><span id="line-101"></span><span>
-</span><span id="line-102"></span><span>    </span><span id="local-6989586621679519866"><span class="annot"><span class="annottext">opRewriteTraverse :: Operation
+</span><span id="line-102"></span><span>    </span><span id="local-6989586621679520085"><span class="annot"><span class="annottext">opRewriteTraverse :: Operation
 -&gt; BlockBuilderT
      (ReaderT BlockAndValueMapping (NameSupplyT m)) [Value]
-</span><a href="#local-6989586621679519866"><span class="hs-identifier hs-var hs-var">opRewriteTraverse</span></a></span></span><span> </span><span id="local-6989586621679519864"><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519864"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-103"></span><span>      </span><span id="local-6989586621679519863"><span class="annot"><span class="annottext">[Region]
-</span><a href="#local-6989586621679519863"><span class="hs-identifier hs-var">newRegions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">ReaderT BlockAndValueMapping (NameSupplyT m) [Region]
+</span><a href="#local-6989586621679520085"><span class="hs-identifier hs-var hs-var">opRewriteTraverse</span></a></span></span><span> </span><span id="local-6989586621679520083"><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520083"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-103"></span><span>      </span><span id="local-6989586621679520082"><span class="annot"><span class="annottext">[Region]
+</span><a href="#local-6989586621679520082"><span class="hs-identifier hs-var">newRegions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">ReaderT BlockAndValueMapping (NameSupplyT m) [Region]
 -&gt; BlockBuilderT
      (ReaderT BlockAndValueMapping (NameSupplyT m)) [Region]
 forall (t :: (* -&gt; *) -&gt; * -&gt; *) (m :: * -&gt; *) a.
@@ -483,14 +483,14 @@ forall (m :: * -&gt; *).
 MonadFix m =&gt;
 OpRewriteM m -&gt; Region -&gt; RewriteT m Region
 </span><a href="MLIR.AST.Rewrite.html#applyOpRewriteRegion"><span class="hs-identifier hs-var">applyOpRewriteRegion</span></a></span><span> </span><span class="annot"><span class="annottext">OpRewriteM m
-</span><a href="#local-6989586621679519895"><span class="hs-identifier hs-var">rule</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">([Region] -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) [Region])
+</span><a href="#local-6989586621679520114"><span class="hs-identifier hs-var">rule</span></a></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">([Region] -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) [Region])
 -&gt; [Region]
 -&gt; ReaderT BlockAndValueMapping (NameSupplyT m) [Region]
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Operation -&gt; [Region]
 forall operand. AbstractOperation operand -&gt; [Region]
 </span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var hs-var">opRegions</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519864"><span class="hs-identifier hs-var">op</span></a></span><span>
+</span><a href="#local-6989586621679520083"><span class="hs-identifier hs-var">op</span></a></span><span>
 </span><span id="line-104"></span><span>      </span><span class="annot"><span class="annottext">Operation
 -&gt; BlockBuilderT
      (ReaderT BlockAndValueMapping (NameSupplyT m)) [Value]
@@ -503,23 +503,23 @@ forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
      (ReaderT BlockAndValueMapping (NameSupplyT m)) [Value]
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519864"><span class="hs-identifier hs-var">op</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="#local-6989586621679520083"><span class="hs-identifier hs-var">op</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
 </span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Region]
-</span><a href="#local-6989586621679519863"><span class="hs-identifier hs-var">newRegions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [ByteString]
+</span><a href="#local-6989586621679520082"><span class="hs-identifier hs-var">newRegions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [ByteString]
 </span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Value] -&gt; [ByteString]
 </span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">operands</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation -&gt; [Value]
 forall operand. AbstractOperation operand -&gt; [operand]
 </span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var hs-var">opOperands</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519864"><span class="hs-identifier hs-var">op</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679520083"><span class="hs-identifier hs-var">op</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-105"></span><span>
-</span><span id="line-106"></span><span>    </span><span id="local-6989586621679519865"><span class="annot"><span class="annottext">opRewriteSkip :: Operation
+</span><span id="line-106"></span><span>    </span><span id="local-6989586621679520084"><span class="annot"><span class="annottext">opRewriteSkip :: Operation
 -&gt; t (ReaderT BlockAndValueMapping (NameSupplyT m)) [Value]
-</span><a href="#local-6989586621679519865"><span class="hs-identifier hs-var hs-var">opRewriteSkip</span></a></span></span><span> </span><span id="local-6989586621679519840"><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519840"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><a href="#local-6989586621679520084"><span class="hs-identifier hs-var hs-var">opRewriteSkip</span></a></span></span><span> </span><span id="local-6989586621679520059"><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520059"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
 </span><span id="line-107"></span><span>      </span><span class="hs-comment">-- Note that we still have to traverse the subregions in case they close-over</span><span>
 </span><span id="line-108"></span><span>      </span><span class="hs-comment">-- any values that have had their names updated.</span><span>
-</span><span id="line-109"></span><span>      </span><span id="local-6989586621679519839"><span class="annot"><span class="annottext">[Region]
-</span><a href="#local-6989586621679519839"><span class="hs-identifier hs-var">newRegions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">ReaderT BlockAndValueMapping (NameSupplyT m) [Region]
+</span><span id="line-109"></span><span>      </span><span id="local-6989586621679520058"><span class="annot"><span class="annottext">[Region]
+</span><a href="#local-6989586621679520058"><span class="hs-identifier hs-var">newRegions</span></a></span></span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">ReaderT BlockAndValueMapping (NameSupplyT m) [Region]
 -&gt; t (ReaderT BlockAndValueMapping (NameSupplyT m)) [Region]
 forall (t :: (* -&gt; *) -&gt; * -&gt; *) (m :: * -&gt; *) a.
 (MonadTrans t, Monad m) =&gt;
@@ -563,7 +563,7 @@ forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Operation -&gt; [Region]
 forall operand. AbstractOperation operand -&gt; [Region]
 </span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var hs-var">opRegions</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519840"><span class="hs-identifier hs-var">op</span></a></span><span>
+</span><a href="#local-6989586621679520059"><span class="hs-identifier hs-var">op</span></a></span><span>
 </span><span id="line-110"></span><span>      </span><span class="annot"><span class="annottext">Operation
 -&gt; t (ReaderT BlockAndValueMapping (NameSupplyT m)) [Value]
 forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
@@ -573,60 +573,60 @@ forall (m :: * -&gt; *). MonadBlockBuilder m =&gt; Operation -&gt; m [Value]
 -&gt; t (ReaderT BlockAndValueMapping (NameSupplyT m)) [Value]
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519840"><span class="hs-identifier hs-var">op</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
+</span><a href="#local-6989586621679520059"><span class="hs-identifier hs-var">op</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opRegions :: [Region]
 </span><a href="MLIR.AST.html#opRegions"><span class="hs-identifier hs-var">opRegions</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Region]
-</span><a href="#local-6989586621679519839"><span class="hs-identifier hs-var">newRegions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [ByteString]
+</span><a href="#local-6989586621679520058"><span class="hs-identifier hs-var">newRegions</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opOperands :: [ByteString]
 </span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Value] -&gt; [ByteString]
 </span><a href="MLIR.AST.Builder.html#operands"><span class="hs-identifier hs-var">operands</span></a></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">Operation -&gt; [Value]
 forall operand. AbstractOperation operand -&gt; [operand]
 </span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var hs-var">opOperands</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519840"><span class="hs-identifier hs-var">op</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679520059"><span class="hs-identifier hs-var">op</span></a></span><span class="hs-special">)</span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-111"></span><span>
-</span><span id="line-112"></span><span id="local-6989586621679520088"><span class="annot"><a href="MLIR.AST.Rewrite.html#substOp"><span class="hs-identifier hs-type">substOp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadReader</span></span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#BlockAndValueMapping"><span class="hs-identifier hs-type">BlockAndValueMapping</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520088"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520088"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span></span><span>
+</span><span id="line-112"></span><span id="local-6989586621679520307"><span class="annot"><a href="MLIR.AST.Rewrite.html#substOp"><span class="hs-identifier hs-type">substOp</span></a></span><span> </span><span class="hs-glyph">::</span><span> </span><span class="annot"><span class="hs-identifier hs-type">MonadReader</span></span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#BlockAndValueMapping"><span class="hs-identifier hs-type">BlockAndValueMapping</span></a></span><span> </span><span class="annot"><a href="#local-6989586621679520307"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="hs-glyph">=&gt;</span><span> </span><span class="annot"><a href="MLIR.AST.html#Operation"><span class="hs-identifier hs-type">AST.Operation</span></a></span><span> </span><span class="hs-glyph">-&gt;</span><span> </span><span class="annot"><a href="#local-6989586621679520307"><span class="hs-identifier hs-type">m</span></a></span><span> </span><span class="annot"><a href="MLIR.AST.Rewrite.html#Operation"><span class="hs-identifier hs-type">Operation</span></a></span></span><span>
 </span><span id="line-113"></span><span id="substOp"><span class="annot"><span class="annottext">substOp :: forall (m :: * -&gt; *).
 MonadReader BlockAndValueMapping m =&gt;
 Operation -&gt; m Operation
-</span><a href="MLIR.AST.Rewrite.html#substOp"><span class="hs-identifier hs-var hs-var">substOp</span></a></span></span><span> </span><span id="local-6989586621679519826"><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519826"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
-</span><span id="line-114"></span><span>  </span><span class="hs-special">(</span><span id="local-6989586621679519825"><span class="annot"><span class="annottext">ValueMapping
-</span><a href="#local-6989586621679519825"><span class="hs-identifier hs-var">valueMap</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679519824"><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679519824"><span class="hs-identifier hs-var">blockMap</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">m BlockAndValueMapping
+</span><a href="MLIR.AST.Rewrite.html#substOp"><span class="hs-identifier hs-var hs-var">substOp</span></a></span></span><span> </span><span id="local-6989586621679520045"><span class="annot"><span class="annottext">Operation
+</span><a href="#local-6989586621679520045"><span class="hs-identifier hs-var">op</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="hs-keyword">do</span><span>
+</span><span id="line-114"></span><span>  </span><span class="hs-special">(</span><span id="local-6989586621679520044"><span class="annot"><span class="annottext">ValueMapping
+</span><a href="#local-6989586621679520044"><span class="hs-identifier hs-var">valueMap</span></a></span></span><span class="hs-special">,</span><span> </span><span id="local-6989586621679520043"><span class="annot"><span class="annottext">BlockMapping
+</span><a href="#local-6989586621679520043"><span class="hs-identifier hs-var">blockMap</span></a></span></span><span class="hs-special">)</span><span> </span><span class="hs-glyph">&lt;-</span><span> </span><span class="annot"><span class="annottext">m BlockAndValueMapping
 forall r (m :: * -&gt; *). MonadReader r m =&gt; m r
 </span><span class="hs-identifier hs-var">ask</span></span><span>
-</span><span id="line-115"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679519822"><span class="annot"><span class="annottext">newOperands :: [Value]
-</span><a href="#local-6989586621679519822"><span class="hs-identifier hs-var hs-var">newOperands</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; Value) -&gt; [ByteString] -&gt; [Value]
+</span><span id="line-115"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679520041"><span class="annot"><span class="annottext">newOperands :: [Value]
+</span><a href="#local-6989586621679520041"><span class="hs-identifier hs-var hs-var">newOperands</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; Value) -&gt; [ByteString] -&gt; [Value]
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-identifier hs-var">fmap</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">ValueMapping
-</span><a href="#local-6989586621679519825"><span class="hs-identifier hs-var">valueMap</span></a></span><span> </span><span class="annot"><span class="annottext">ValueMapping -&gt; ByteString -&gt; Value
+</span><a href="#local-6989586621679520044"><span class="hs-identifier hs-var">valueMap</span></a></span><span> </span><span class="annot"><span class="annottext">ValueMapping -&gt; ByteString -&gt; Value
 forall k a. Ord k =&gt; Map k a -&gt; k -&gt; a
 </span><span class="hs-operator hs-var">M.!</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">([ByteString] -&gt; [Value]) -&gt; [ByteString] -&gt; [Value]
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Operation -&gt; [ByteString]
 forall operand. AbstractOperation operand -&gt; [operand]
 </span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var hs-var">opOperands</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519826"><span class="hs-identifier hs-var">op</span></a></span><span>
-</span><span id="line-116"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679519820"><span class="annot"><span class="annottext">newSuccessors :: [ByteString]
-</span><a href="#local-6989586621679519820"><span class="hs-identifier hs-var hs-var">newSuccessors</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; ByteString) -&gt; [ByteString] -&gt; [ByteString]
+</span><a href="#local-6989586621679520045"><span class="hs-identifier hs-var">op</span></a></span><span>
+</span><span id="line-116"></span><span>  </span><span class="hs-keyword">let</span><span> </span><span id="local-6989586621679520039"><span class="annot"><span class="annottext">newSuccessors :: [ByteString]
+</span><a href="#local-6989586621679520039"><span class="hs-identifier hs-var hs-var">newSuccessors</span></a></span></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">(ByteString -&gt; ByteString) -&gt; [ByteString] -&gt; [ByteString]
 forall (f :: * -&gt; *) a b. Functor f =&gt; (a -&gt; b) -&gt; f a -&gt; f b
 </span><span class="hs-identifier hs-var">fmap</span></span><span> </span><span class="hs-special">(</span><span class="annot"><span class="annottext">BlockMapping
-</span><a href="#local-6989586621679519824"><span class="hs-identifier hs-var">blockMap</span></a></span><span> </span><span class="annot"><span class="annottext">BlockMapping -&gt; ByteString -&gt; ByteString
+</span><a href="#local-6989586621679520043"><span class="hs-identifier hs-var">blockMap</span></a></span><span> </span><span class="annot"><span class="annottext">BlockMapping -&gt; ByteString -&gt; ByteString
 forall k a. Ord k =&gt; Map k a -&gt; k -&gt; a
 </span><span class="hs-operator hs-var">M.!</span></span><span class="hs-special">)</span><span> </span><span class="annot"><span class="annottext">([ByteString] -&gt; [ByteString]) -&gt; [ByteString] -&gt; [ByteString]
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Operation -&gt; [ByteString]
 forall operand. AbstractOperation operand -&gt; [ByteString]
 </span><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var hs-var">opSuccessors</span></a></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519826"><span class="hs-identifier hs-var">op</span></a></span><span>
+</span><a href="#local-6989586621679520045"><span class="hs-identifier hs-var">op</span></a></span><span>
 </span><span id="line-117"></span><span>  </span><span class="annot"><span class="annottext">Operation -&gt; m Operation
 forall (m :: * -&gt; *) a. Monad m =&gt; a -&gt; m a
 </span><span class="hs-identifier hs-var">return</span></span><span> </span><span class="annot"><span class="annottext">(Operation -&gt; m Operation) -&gt; Operation -&gt; m Operation
 forall a b. (a -&gt; b) -&gt; a -&gt; b
 </span><span class="hs-operator hs-var">$</span></span><span> </span><span class="annot"><span class="annottext">Operation
-</span><a href="#local-6989586621679519826"><span class="hs-identifier hs-var">op</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opOperands :: [Value]
+</span><a href="#local-6989586621679520045"><span class="hs-identifier hs-var">op</span></a></span><span> </span><span class="hs-special">{</span><span> </span><span class="annot"><span class="annottext">opOperands :: [Value]
 </span><a href="MLIR.AST.html#opOperands"><span class="hs-identifier hs-var">opOperands</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[Value]
-</span><a href="#local-6989586621679519822"><span class="hs-identifier hs-var">newOperands</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opSuccessors :: [ByteString]
+</span><a href="#local-6989586621679520041"><span class="hs-identifier hs-var">newOperands</span></a></span><span class="hs-special">,</span><span> </span><span class="annot"><span class="annottext">opSuccessors :: [ByteString]
 </span><a href="MLIR.AST.html#opSuccessors"><span class="hs-identifier hs-var">opSuccessors</span></a></span><span> </span><span class="hs-glyph">=</span><span> </span><span class="annot"><span class="annottext">[ByteString]
-</span><a href="#local-6989586621679519820"><span class="hs-identifier hs-var">newSuccessors</span></a></span><span> </span><span class="hs-special">}</span><span>
+</span><a href="#local-6989586621679520039"><span class="hs-identifier hs-var">newSuccessors</span></a></span><span> </span><span class="hs-special">}</span><span>
 </span><span id="line-118"></span><span>
 </span><span id="line-119"></span><span class="hs-comment">-- TODO(apaszke): Multi-op-patterns. Sketch:</span><span>
 </span><span id="line-120"></span><span class="hs-comment">--</span><span>

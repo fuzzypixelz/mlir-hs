@@ -2168,19 +2168,21 @@ assert :: () => MonadBlockBuilder m => Value -> ByteString -> m ()
 
 module MLIR.Native.Pass
 createPassManager :: Context -> IO PassManager
-inline_c_ffi_6989586621679503826 :: Context -> IO PassManager
+inline_c_ffi_6989586621679503827 :: Context -> IO PassManager
 destroyPassManager :: PassManager -> IO ()
-inline_c_ffi_6989586621679503835 :: PassManager -> IO ()
+inline_c_ffi_6989586621679503836 :: PassManager -> IO ()
 withPassManager :: Context -> (PassManager -> IO a) -> IO a
 runPasses :: PassManager -> Module -> IO LogicalResult
-inline_c_ffi_6989586621679503848 :: PassManager -> Module -> IO LogicalResult
+inline_c_ffi_6989586621679503849 :: PassManager -> Module -> IO LogicalResult
 addConvertMemRefToLLVMPass :: PassManager -> IO ()
-inline_c_ffi_6989586621679503857 :: PassManager -> IO ()
+inline_c_ffi_6989586621679503858 :: PassManager -> IO ()
 addConvertFuncToLLVMPass :: PassManager -> IO ()
-inline_c_ffi_6989586621679503866 :: PassManager -> IO ()
+inline_c_ffi_6989586621679503867 :: PassManager -> IO ()
 addConvertVectorToLLVMPass :: PassManager -> IO ()
-inline_c_ffi_6989586621679503875 :: PassManager -> IO ()
+inline_c_ffi_6989586621679503876 :: PassManager -> IO ()
+addConvertControlFlowToLLVMPass :: PassManager -> IO ()
+inline_c_ffi_6989586621679503885 :: PassManager -> IO ()
 addConvertSCFToControlFlowPass :: PassManager -> IO ()
-inline_c_ffi_6989586621679503884 :: PassManager -> IO ()
+inline_c_ffi_6989586621679503894 :: PassManager -> IO ()
 addConvertReconcileUnrealizedCastsPass :: PassManager -> IO ()
-inline_c_ffi_6989586621679503893 :: PassManager -> IO ()
+inline_c_ffi_6989586621679503903 :: PassManager -> IO ()
