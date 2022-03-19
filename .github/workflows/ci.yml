@@ -68,7 +68,7 @@ jobs:
     - name: Build mlir-hs
       run: |
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/mlir_shared/lib
-        stack build --test --ghc-options "-Wall -Werror -fforce-recomp"
+        stack build --test --ghc-options "-Wall -Werror -Wno-name-shadowing -fforce-recomp"
 
     - name: Run mlir-hs tests
       run: |
