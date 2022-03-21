@@ -15,6 +15,7 @@
 module MLIR.AST where
 
 import qualified Data.ByteString as BS
+import qualified Data.ByteString.Char8 as BS.Char8
 
 import Data.Typeable
 import Data.Int
@@ -377,7 +378,9 @@ instance FromAST Region Native.Region where
 
 instance FromAST Block Native.Block where
   fromAST ctx (outerValueEnv, blockEnv) Block{..} = do
-    let block = blockEnv M.! blockName
+    let block = case M.lookup blockName blockEnv of
+          Just b  -> b
+          Nothing -> error $ "FromAST: blockName `" ++ BS.Char8.unpack blockName ++ "` not found in environment"
     nativeBlockArgs <- getBlockArgs block
     let blockArgNames = fst <$> blockArgs
     let argValueEnv = M.fromList $ zip blockArgNames nativeBlockArgs
