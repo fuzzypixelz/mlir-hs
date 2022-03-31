@@ -89,6 +89,7 @@ library
     , MLIR.AST.Dialect.Generated.Vector
     , MLIR.AST.Dialect.Generated.X86Vector
     , MLIR.AST.Dialect.Generated.SCF
+    , MLIR.AST.Dialect.Generated.MemRef
   build-depends:
       base >=4.7 && <5
     , inline-c

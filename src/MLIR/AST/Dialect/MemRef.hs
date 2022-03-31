@@ -12,8 +12,14 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 
-module MLIR.AST.Dialect.MemRef where
+module MLIR.AST.Dialect.MemRef (
+    pattern Load
+  , pattern Store
+  , module MLIR.AST.Dialect.Generated.MemRef
+  ) where
 
+
+import MLIR.AST.Dialect.Generated.MemRef
 import MLIR.AST
 
 pattern Load :: Type -> Name -> [Name] -> Operation
