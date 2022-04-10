@@ -31,10 +31,10 @@ import Control.Monad.IO.Class
 import Control.Monad.Trans.Cont
 import qualified Language.C.Inline as C
 
-import           Data.Array         (Ix)
 import           Data.Int           (Int32)
 import           MLIR.AST           hiding (Type)
 import qualified MLIR.AST           as AST
+import           Data.Array.IArray
 import           MLIR.AST.Builder
 import qualified MLIR.AST.Builder   as AST
 import qualified MLIR.AST.Serialize as AST
@@ -91,14 +91,15 @@ pattern LiteralStruct :: [AST.Type] -> AST.Type
 pattern LiteralStruct fields <- (castLLVMType -> Just (LiteralStructType fields))
   where LiteralStruct fields = AST.DialectType (LiteralStructType fields)
 
-pattern GetElementPtr :: () => (Show a, Ix a) => Location -> AST.Type -> operand -> [operand] -> IStorableArray a Int32 -> AbstractOperation operand
-pattern GetElementPtr loc ty base indices structIndices = Operation
+pattern GetElementPtr :: Location -> AST.Type -> operand -> [operand] -> [Int32] -> AbstractOperation operand
+pattern GetElementPtr loc ty base indices structIndices <- Operation _ loc (Explicit [ty]) (base : indices) _ _ (InternalGEPOpAttributes (elems -> structIndices))
+  where GetElementPtr loc ty base indices structIndices = Operation
           { opName = "llvm.getelementptr"
           , opLocation = loc
           , opResultTypes = Explicit [ty]
           , opOperands = (base : indices)
           , opRegions = []
           , opSuccessors = []
-          , opAttributes = (InternalGEPOpAttributes structIndices)
+          , opAttributes = (InternalGEPOpAttributes (listArray (1, length structIndices) structIndices))
           }
 
