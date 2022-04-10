@@ -19,6 +19,7 @@ module MLIR.AST.Dialect.LLVM (
   , pattern Array
   , pattern Void
   , pattern LiteralStruct
+  , pattern GetElementPtr
   -- * Operations
   , module MLIR.AST.Dialect.Generated.LLVM
   ) where
