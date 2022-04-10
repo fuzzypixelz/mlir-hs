@@ -19,8 +19,9 @@ module MLIR.AST.Dialect.MemRef (
   ) where
 
 
-import MLIR.AST.Dialect.Generated.MemRef
 import MLIR.AST
+import MLIR.AST.Builder
+import MLIR.AST.Dialect.Generated.MemRef
 
 pattern Load :: Type -> Name -> [Name] -> Operation
 pattern Load ty src idx = Operation

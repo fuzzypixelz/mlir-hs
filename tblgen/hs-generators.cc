@@ -14,6 +14,7 @@
 
 #include <functional>
 #include <regex>
+#include <iostream>
 
 #include "llvm/ADT/Optional.h"
 #include "llvm/ADT/STLExtras.h"
@@ -82,6 +83,7 @@ void warn(llvm::StringRef op_name, const std::string& reason) {
 
 void warn(const mlir::tblgen::Operator& op, const std::string& reason) {
   warn(op.getOperationName(), reason);
+  // std::cout << "[WARN] " << op.getOperationName() << " " << reason << std::endl;
 }
 
 struct AttrPatternTemplate {
@@ -224,6 +226,8 @@ const attr_pattern_map& getAttrPatternTemplates() {
       {"I64ArrayAttr", {"PatternUtil.I64ArrayAttr {0}", "[Int]", {}, {}}},
       {"I64ElementsAttr", {"DenseElementsAttr (IntegerType Signless 64) (DenseInt64 {0})",
                            "(AST.IStorableArray {0} Int64)", {"Ix {0}", "Show {0}"}, {"PatternUtil.DummyIx"}}},
+      {"I32ElementsAttr", {"DenseElementsAttr (IntegerType Signless 32) (DenseInt32 {0})",
+                           "(AST.IStorableArray {0} Int32)", {"Ix {0}", "Show {0}"}, {"PatternUtil.DummyIx"}}},
       {"IndexAttr", {"IntegerAttr IndexType {0}", "Int", {}, {}}},
       {"StrAttr", {"StringAttr {0}", "BS.ByteString", {}, {}}},
       {"FlatSymbolRefAttr", {"FlatSymbolRefAttr {0}", "BS.ByteString", {}, {}}},
@@ -775,7 +779,7 @@ bool emitOpTableDefs(const llvm::RecordKeeper& recordKeeper,
   os << R"(
 import Prelude (Int, Double, Maybe(..), Bool(..), (++), (<$>), ($), (<>), Show)
 import qualified Prelude
-import Data.Int (Int64)
+import Data.Int (Int64, Int32)
 import qualified Data.Maybe
 import Data.Array (Ix)
 import qualified Data.Array.IArray as IArray

@@ -155,7 +155,7 @@ main = defaultMainWithHooks simpleUserHooks
           )
         , ( "LLVM"
           , "mlir/Dialect/LLVMIR/LLVMOps.td"
-          , ["-strip-prefix", "LLVM_", "-dialect-name", "LLVM"]
+          , ["-strip-prefix", "LLVM_", "-dialect-name", "LLVM", "-explain-missing"]
           )
         , ("Linalg", "mlir/Dialect/Linalg/IR/LinalgOps.td", [])
         , ( "LinalgStructured"
