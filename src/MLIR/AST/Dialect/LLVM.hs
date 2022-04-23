@@ -19,7 +19,6 @@ module MLIR.AST.Dialect.LLVM (
   , pattern Array
   , pattern Void
   , pattern LiteralStruct
-  , pattern GetElementPtr
   -- * Operations
   , module MLIR.AST.Dialect.Generated.LLVM
   ) where
@@ -90,16 +89,4 @@ pattern Void <- (castLLVMType -> Just VoidType)
 pattern LiteralStruct :: [AST.Type] -> AST.Type
 pattern LiteralStruct fields <- (castLLVMType -> Just (LiteralStructType fields))
   where LiteralStruct fields = AST.DialectType (LiteralStructType fields)
-
-pattern GetElementPtr :: Location -> AST.Type -> operand -> [operand] -> [Int32] -> AbstractOperation operand
-pattern GetElementPtr loc ty base indices structIndices <- Operation _ loc (Explicit [ty]) (base : indices) _ _ (InternalGEPOpAttributes (elems -> structIndices))
-  where GetElementPtr loc ty base indices structIndices = Operation
-          { opName = "llvm.getelementptr"
-          , opLocation = loc
-          , opResultTypes = Explicit [ty]
-          , opOperands = (base : indices)
-          , opRegions = []
-          , opSuccessors = []
-          , opAttributes = (InternalGEPOpAttributes (listArray (1, length structIndices) structIndices))
-          }
 
