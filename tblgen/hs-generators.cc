@@ -218,6 +218,7 @@ const attr_pattern_map& getAttrPatternTemplates() {
       {"AffineMapAttr", {"AffineMapAttr {0}", "Affine.Map", {}, {}}},
       {"ArrayAttr", {"ArrayAttr {0}", "[Attribute]", {}, {}}},
       {"BoolAttr", {"BoolAttr {0}", "Bool", {}, {}}},
+      {"TypeAttr", {"TypeAttr {0}", "Type", {}, {}}},
       {"DictionaryAttr", {"DictionaryAttr {0}", "(M.Map Name Attribute)", {}, {}}},
       {"F32Attr", {"FloatAttr Float32Type {0}", "Double", {}, {}}},
       {"F64Attr", {"FloatAttr Float64Type {0}", "Double", {}, {}}},
